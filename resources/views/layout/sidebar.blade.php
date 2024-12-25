@@ -82,8 +82,8 @@
               <div data-i18n="Page 1">Dashboard</div>
             </a>
           </li>
-          <li class="{{$routeName == 'employeelist' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('employeelist')}}" class="menu-link">
+          <li class="{{$routeName == 'employee.index' ? 'menu-item active' : 'menu-item'}}">
+            <a href="{{route('employee.index')}}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-detail"></i>
             
               <div data-i18n="Page 2">Employee</div>

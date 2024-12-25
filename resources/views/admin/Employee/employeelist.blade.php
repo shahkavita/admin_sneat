@@ -240,11 +240,5 @@ Employee List
 <hr class="my-5" />
 @endsection
 @section('scripts')
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-</script>
+
 @endsection

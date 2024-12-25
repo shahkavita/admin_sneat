@@ -1,17 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\employeeController;
+
 use Illuminate\support\Facades\DB;
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/index', function () {
-    return view('index');
+use App\Http\Controllers\employeeController;
+Route::get('/admin', function () {
+    return view('/admin/index');
 })->name('index');
+Route::get('/admin/employee',[employeeController::class,'index'])->name('employee.index');
 
-Route::resource('employee',employeeController::class);
-
-Route::get('/logout', function () {
-    return view('logout');
+Route::get('/admin/employee', [employeeController::class,'getdata'])->name('admin.emplist');
+Route::get('/admin/logout', function () {
+    return view('admin/logout');
 })->name('logout');

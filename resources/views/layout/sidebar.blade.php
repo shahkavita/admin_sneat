@@ -4,8 +4,6 @@
 
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
-         
-          <a href="{{url('index')}}" class="app-brand-link">
             <span class="app-brand-logo demo">
               <svg
                 width="25"
@@ -73,7 +71,7 @@
         <ul class="menu-inner py-1">
           @php
          $routeName = request()->route()->getName();
-        // echo $routeName; 
+       // echo $routeName; 
         @endphp
           <!-- Page -->
           <li class="{{$routeName == 'index' ? 'menu-item active' : 'menu-item'}}">

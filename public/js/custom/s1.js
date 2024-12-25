@@ -1,5 +1,16 @@
+function loaddata()
+{
+  $.ajax({
+        url:"/employee",
+        method:'GET',
+
+
+  });
+}
+
 $(document).ready(function() {   
-    $(document).on('click', '#empform', function () {   
+    $(document).on('click', '#empform', function () {  
+       
       $('#empsave').on('click',function (e) {
        e.preventDefault();
        let formname=document.getElementById('employeeform');

@@ -4,7 +4,7 @@ $(document).ready(function() {
   function loaddata()
    {
     $.ajax({
-      url: 'employee/index',
+      url: 'employee',
       method: 'GET',
       success: function (data) {
           const tableBody = $('#employeeTable');
@@ -47,7 +47,7 @@ function viewemployee(id)
 {
     console.log(id);
     $.ajax({
-        url:'employee/index/'+id,
+        url:'employee'+id,
         type:'GET',
         success:function(response)
         {

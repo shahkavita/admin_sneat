@@ -13,8 +13,14 @@ class employeeController extends Controller
     }
     public function getdata()
     {
-        $s1=employee::get();
-        return response()->json($s1);
+        $emp=employee::get();
+        return response()->json($emp);
+    }
+
+    public function showdata(string $id)
+    {
+        $emp=employee::find($id);
+        return response()->json($emp);
     }
    
 }

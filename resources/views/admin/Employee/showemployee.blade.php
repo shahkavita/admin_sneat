@@ -16,7 +16,9 @@ Employee Details
         <div class="modal-body">
           <p><strong>Name:</strong> <span id="employeeName"></span></p>
           <p><strong>Email:</strong> <span id="employeeEmail"></span></p>
-          <p><strong>Phone:</strong> <span id="employeePhone"></span></p>
+          <p><strong>Gender:</strong> <span id="employeegender"></span></p>
+          <p><strong>Department:</strong> <span id="employeedepartment"></span></p>
+          <p><strong>Skills:</strong> <span id="employeeskills"></span></p>
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

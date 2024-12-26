@@ -9,7 +9,9 @@ Route::get('/admin', function () {
 })->name('index');
 Route::get('/admin/employee',[employeeController::class,'index'])->name('employee.index');
 
-Route::get('/admin/employee', [employeeController::class,'getdata'])->name('admin.emplist');
+Route::get('/admin/employee/index', [employeeController::class,'getdata'])->name('admin.emplist');
+Route::get('/admin/employee/index/{id}', [employeeController::class,'showdata'])->name('admin.singleemp');
+
 Route::get('/admin/logout', function () {
     return view('admin/logout');
 })->name('logout');

@@ -32,5 +32,5 @@ Employee List
 
 @endsection
 @section('scripts')
-<script src="{{asset('js/custom/emp.js')}}"></script>
+<script src="{{asset('js/custom/employee.js')}}"></script>
 @endsection

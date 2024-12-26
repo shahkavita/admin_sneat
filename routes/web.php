@@ -8,7 +8,7 @@ Route::get('/admin', function () {
     return view('/admin/index');
 })->name('index');
 Route::get('admin/employee',[employeeController::class,'index'])->name('employee.index');
-
+Route::post('admin/employee', [employeeController::class, 'savedata']);
 Route::get('admin/employee/index', [employeeController::class,'getdata'])->name('admin.emplist');
 Route::get('admin/employee/{id}', [employeeController::class,'showdata'])->name('admin.singleemp');
 

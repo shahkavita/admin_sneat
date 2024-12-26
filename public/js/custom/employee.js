@@ -1,5 +1,44 @@
 $(document).ready(function() {  
   loaddata();
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+  $(document).on('click', '#empform', function () {  
+       $('#empsave').on('click',function (e) {
+            e.preventDefault();
+            let formname=document.getElementById('employeeform');
+            let f1=new FormData(formname);
+            console.log(f1);
+           $.ajax({
+                url:'employee',
+                method:'POST',
+                contentType: false, // Necessary for FormData
+                processData: false,
+                data:f1,
+                success: function (response) {
+
+                alert("Record Inserted Successfully!!")
+                loaddata();
+                    $('#exampleModal').modal('hide');
+                    $('#employeeform')[0].reset();
+           },
+           error: function (xhr) {
+            const errors = xhr.responseJSON.errors;
+            $('.text-danger').text('');
+            if (errors) {
+                if (errors.name) $('.error-name').text(errors.name[0]);
+                if (errors.email) $('.error-email').text(errors.email[0]);
+                if (errors.gender) $('.error-gender').text(errors.gender[0]);
+                if (errors.department) $('.error-department').text(errors.department[0]);
+                if (errors.skills) $('.error-skills').text(errors.skills[0]);
+            }
+        }
+           });
+        });
+
+        });
    });
   function loaddata()
    {

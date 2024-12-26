@@ -11,16 +11,17 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form  id="employeeform" name="employeeform">
-            @csrf
+          <form  id="employeeform" name="employeeform" method="POST">
          
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Name:</label>
               <input type="text" class="form-control" id="recipient-name" name="name" id="ename">
+              <span class="text-danger error-name"></span>
             </div>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Email:</label>
               <input type="text" class="form-control" id="email" name="email">
+              <span class="text-danger error-email"></span>
             </div>
   
             <div class="mb-3">
@@ -29,6 +30,7 @@
               <label for="recipient-name" class="col-form-label">Male</label>
               <input type="radio"  name="gender" id="female" value="Female">
               <label for="recipient-name" class="col-form-label">Female</label>
+              <span class="text-danger error-gender"></span>
             </div>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Department</label>
@@ -38,6 +40,7 @@
                 <option value="Human Resource">Human Resource</option>
                 <option value="Accounts">Accounts</option>
               </select>
+              <span class="text-danger error-department"></span>
             </div>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Skills</label><br>
@@ -52,7 +55,7 @@
    
               <input class="form-check-input" type="checkbox" id="time management" value="Time Management" name="skills[]">
               <label class="col-form-label" for="inlineCheckbox1">Time Management</label>
-   
+              <span class="text-danger error-skills"></span>
             </div>
           </form>
         </div>

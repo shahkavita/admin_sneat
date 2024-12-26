@@ -4,7 +4,7 @@ $(document).ready(function() {
   function loaddata()
    {
     $.ajax({
-      url: 'employee',
+      url: 'employee/index',
       method: 'GET',
       success: function (data) {
           const tableBody = $('#employeeTable');
@@ -20,19 +20,20 @@ $(document).ready(function() {
                       <td>${employee.gender}</td>
                       <td>${employee.department}</td>
                       <td>${employee.skills.split(',').join('<br>')}</td> 
-                      <td>
-                       <button class="btn btn-primary btn-sm" 
-            onclick='viewemployee(${employee.id })' id="view" name="view">
-            <i class="fa fa-eye" aria-hidden="true"></i></button>
+                     <td>
+                        <button class="btn btn-primary btn-sm" 
+                            onclick='viewemployee(${employee.id })' id="view" name="view">
+                            <i class="fa fa-eye" aria-hidden="true"></i></button>
 
-            <button class="btn btn-info btn-sm" 
-            data-id='${employee.id }' id="empedit" name="empedit">
-            <i class="fa fa-pencil" aria-hidden="true"></i></button>
-           
-            <button class="btn btn-danger btn-sm" 
-            data-id='${employee.id }' id="empdel" name="empdel">
-            <i class="fa fa-trash" aria-hidden="true"></i></button>
-                      </td>       
+                            <button class="btn btn-info btn-sm" 
+                            data-id='${employee.id }' id="empedit" name="empedit">
+                            <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger btn-sm" 
+                            data-id='${employee.id }' id="empdel" name="empdel">
+                            <i class="fa fa-trash" aria-hidden="true"></i></button>
+
+
+                     </td>     
                   </tr>
               `;
               tableBody.append(row);
@@ -47,11 +48,12 @@ function viewemployee(id)
 {
     console.log(id);
     $.ajax({
-        url:'employee'+id,
+        url:'employee/'+id,
         type:'GET',
         success:function(response)
         {
             $("#staticBackdrop").modal('show');
+            $("#employeeCode").text(response.id);
             $("#employeeName").text(response.name);
             $("#employeeEmail").text(response.email);
             $("#employeeGender").text(response.gender);

@@ -20,6 +20,7 @@ Employee List
           <th>Department</th>
           <th>Skills</th>
           <th>Actions</th>
+         
         </tr>
       </thead>
       <tbody id="employeeTable">
@@ -29,8 +30,4 @@ Employee List
     </table>
   </div>
 </div>
-
-@endsection
-@section('scripts')
-<script src="{{asset('js/custom/employee.js')}}"></script>
 @endsection

@@ -8,7 +8,7 @@ class employeeController extends Controller
     //
     public function index()
     {
-        return view ('admin.emplist');
+        return view ('admin.Employee.index');
       
     }
     public function getdata()

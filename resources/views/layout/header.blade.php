@@ -23,6 +23,9 @@
     <link rel="icon" type="image/x-icon" href="{{url('assets/img/favicon/favicon.ico')}}" />
 
     <!-- Fonts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -18,8 +18,12 @@ $(document).ready(function() {
                 processData: false,
                 data:f1,
                 success: function (response) {
-
-                alert("Record Inserted Successfully!!")
+                    Swal.fire({
+                        title: "Success!",
+                        text:response.message,
+                        icon: "success"
+                      });
+               // alert("Record Inserted Successfully!!")
                 loaddata();
                     $('#exampleModal').modal('hide');
                     $('#employeeform')[0].reset();
@@ -65,13 +69,12 @@ $(document).ready(function() {
                             <i class="fa fa-eye" aria-hidden="true"></i></button>
 
                             <button class="btn btn-info btn-sm" 
-                            data-id='${employee.id }' id="empedit" name="empedit">
+                            onclick='editemployee(${employee.id})' id="empedit" name="empedit">
                             <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                          
                             <button class="btn btn-danger btn-sm" 
-                            data-id='${employee.id }' id="empdel" name="empdel">
+                            onclick='deleteemployee(${employee.id})' id="empdel" name="empdel">
                             <i class="fa fa-trash" aria-hidden="true"></i></button>
-
-
                      </td>     
                   </tr>
               `;

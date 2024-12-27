@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form  id="employeeform" name="employeeform" method="POST">
-         
+            <input type="hidden" id="hid" name="hid">
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Name:</label>
               <input type="text" class="form-control" id="recipient-name" name="name" id="ename">
@@ -30,6 +30,7 @@
               <label for="recipient-name" class="col-form-label">Male</label>
               <input type="radio"  name="gender" id="female" value="Female">
               <label for="recipient-name" class="col-form-label">Female</label>
+              <br>
               <span class="text-danger error-gender"></span>
             </div>
             <div class="mb-3">

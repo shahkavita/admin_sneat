@@ -17,19 +17,40 @@ class employeeController extends Controller
         $emp=employee::get();
         return response()->json($emp);
     }
-    public function savedata(EmployeeRequest $request)
+    public function savedata(Request $request)
     {
-       
-        $validatedData = $request->validated();
+       /*  $validatedData = $request->validated();
         employee::create([
             'name'=>$validatedData->name,
             'email'=> $validatedData->email,
             'gender'=> $validatedData->gender,
             'department'=> $validatedData->department,
             'skills'=>implode(',',$validatedData->skills),
+        ]);*/
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:employee,email',
+            'gender'=>'required',
+            'department'=>'required',
+            'skills' => 'required', // Comma-separated validation
+        ],
+        [
+            'name.required' => 'The name field is required.',
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please provide a valid email address.',
+            'gender.required' => 'The gender field is required.',
+            'department.required' => 'The department field is required.',
+            'email.unique' => 'This email is already registered.',
+            'skills.required' => 'The skills field is required.',
         ]);
-        return response()->json(['success' => 'Employee added successfully.']);
-       
+        employee::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'department' => $request->department,
+            'skills' => implode(',',$request->skills),
+        ]);
+        return response()->json(['success' => true, 'message' => 'Employee created successfully!']);
     }
     public function showdata(string $id)
     {

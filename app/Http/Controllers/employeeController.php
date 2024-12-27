@@ -48,14 +48,58 @@ class employeeController extends Controller
             'email' => $request->email,
             'gender' => $request->gender,
             'department' => $request->department,
-            'skills' => implode(',',$request->skills),
+            'skills' =>implode(",",$request->skills),
         ]);
         return response()->json(['success' => true, 'message' => 'Employee created successfully!']);
     }
-    public function showdata(string $id)
+    public function viewdata(string $id)
     {
-        $emp=employee::find($id);
-        return response()->json($emp);
+        $employee=employee::find($id);
+        return response()->json($employee);
     }
-   
-}
+    public function deletedata(string $id)
+    {
+        $employee=employee::find($id);
+        $employee->delete();
+        return response()->json(['success' => true, 'message' => 'Employee deleted successfully!']);
+    }
+    public function data(string $id)
+    {  
+        $employee=employee::find($id);
+        return response()->json($employee);
+    }
+    public function updatedata(Request $request,string $id)
+    {
+        $employee=employee::find($id);
+        if($employee)
+        {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:employee,email',
+                'gender'=>'required',
+                'department'=>'required',
+                'skills' => 'required', // Comma-separated validation
+            ],
+            [
+                'name.required' => 'The name field is required.',
+                'email.required' => 'The email field is required.',
+                'email.email' => 'Please provide a valid email address.',
+                'gender.required' => 'The gender field is required.',
+                'department.required' => 'The department field is required.',
+                'email.unique' => 'This email is already registered.',
+                'skills.required' => 'The skills field is required.',
+            ]);
+
+            $employee->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'department' => $request->department,
+                'skills' =>$request->skills,
+            ]);
+            return response()->json(['success' => true,'message' => 'Employee Updated successfully!']);   
+    
+        }
+    }  
+       
+}  

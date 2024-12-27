@@ -15,7 +15,7 @@
             <input type="hidden" id="hid" name="hid">
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Name:</label>
-              <input type="text" class="form-control" id="recipient-name" name="name" id="ename">
+              <input type="text" class="form-control" name="name" id="ename"/>
               <span class="text-danger error-name"></span>
             </div>
             <div class="mb-3">
@@ -55,7 +55,7 @@
               <label class="col-form-label" for="inlineCheckbox1">Leadership</label>
    
               <input class="form-check-input" type="checkbox" id="time management" value="Time Management" name="skills[]">
-              <label class="col-form-label" for="inlineCheckbox1">Time Management</label>
+              <label class="col-form-label" for="inlineCheckbox1">Time Management</label><br>
               <span class="text-danger error-skills"></span>
             </div>
           </form>

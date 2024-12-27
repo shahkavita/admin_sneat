@@ -5,15 +5,19 @@ $(document).ready(function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-  $(document).on('click', '#empform', function () {  
+ // $(document).on('click', '#empform', function () {  
        $('#empsave').on('click',function (e) {
             e.preventDefault();
+            const id = $('#hid').val();
+            const url = id ? `employee/${id}` : 'employee';
+            const method = id ? 'PUT' : 'POST';
+            console.log(id);
             let formname=document.getElementById('employeeform');
             let f1=new FormData(formname);
             console.log(f1);
            $.ajax({
-                url:'employee',
-                method:'POST',
+                url:url,
+                method:method,
                 contentType: false, // Necessary for FormData
                 processData: false,
                 data:f1,
@@ -23,7 +27,6 @@ $(document).ready(function() {
                         text:response.message,
                         icon: "success"
                       });
-               // alert("Record Inserted Successfully!!")
                 loaddata();
                     $('#exampleModal').modal('hide');
                     $('#employeeform')[0].reset();
@@ -43,7 +46,7 @@ $(document).ready(function() {
         });
 
         });
-   });
+   //});
   function loaddata()
    {
     $.ajax({
@@ -69,11 +72,11 @@ $(document).ready(function() {
                             <i class="fa fa-eye" aria-hidden="true"></i></button>
 
                             <button class="btn btn-info btn-sm" 
-                            onclick='editemployee(${employee.id})' id="empedit" name="empedit">
+                            onclick='editemployee(${employee.id })'id="empedit" name="empedit">
                             <i class="fa fa-pencil" aria-hidden="true"></i></button>
                           
                             <button class="btn btn-danger btn-sm" 
-                            onclick='deleteemployee(${employee.id})' id="empdel" name="empdel">
+                            onclick='deleteemployee(${employee.id })' id="empdel" name="empdel">
                             <i class="fa fa-trash" aria-hidden="true"></i></button>
                      </td>     
                   </tr>
@@ -85,6 +88,64 @@ $(document).ready(function() {
           console.error('Error fetching employee data:', error);
       }
   });
+}
+function editemployee(id)
+{
+    console.log(id);
+    $.ajax({
+        url:'employee/'+id,
+        method:'GET',
+        success:function(response)
+        {
+            $('#exampleModal').modal('show');
+            $('#exampleModalLabel').text('Update Employee');
+            $('#hid').val(response.id);
+            $("#ename").val(response.name);
+            $("#email").val(response.email);
+            $(`input[name="gender"][value="${response.gender}"]`).prop('checked',true);
+            $("#edepartment").val(response.department);
+        
+            const skills=response.skills.split(',')
+            $('input[type="checkbox"]').each(function () {
+                if (skills.includes($(this).val())) {
+                    $(this).prop('checked', true);
+                } else {
+                    $(this).prop('checked', false);
+                }
+            });
+            $('#empsave').val('Update');
+
+        }
+    })
+}
+function deleteemployee(id)
+{
+    console.log(id);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+           $.ajax({
+            url:'employee/'+id,
+            method:'DELETE',
+            success:function(response)
+            {
+                loaddata();
+                Swal.fire({
+                    title: "Success!",
+                    text:response.message,
+                    icon: "success"
+                  });  
+            }
+           });
+        }
+    });
 }
 function viewemployee(id)
 {

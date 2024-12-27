@@ -13,13 +13,13 @@ Employee List
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Gender</th>
-          <th>Department</th>
-          <th>Skills</th>
-          <th>Actions</th>
+          <th style="width: 10px">Id</th>
+          <th style="width: 10px">Name</th>
+          <th style="width: 20px">Email</th>
+          <th style="width: 10px">Gender</th>
+          <th style="width: 20px">Department</th>
+          <th style="width: 10px">Skills</th>
+          <th style="width: 20px">Actions</th>
          
         </tr>
       </thead>

@@ -75,9 +75,7 @@ class employeeController extends Controller
                 'skills' =>implode(",",$request->skills),
             ]);
             return response()->json(['success' => true, 'message' => 'Employee created successfully!']);
-        
         }
-            
     }
     public function viewdata(string $id)
     {
@@ -94,43 +92,6 @@ class employeeController extends Controller
     {  
         $employee=employee::find($id);
         return response()->json($employee);
-    }
-    public function updatedata(Request $request)
-    {
-        $post = $request->post();
-        $id = isset($post['hid']) ? $post['hid'] : "";
-     //   return $id;
-      if($id!= "")
-     {
-        // Validate data
-             // Validate data
-             $request->validate([
-                'name' => 'required',
-                'email' => 'required|email',
-                'gender' => 'required',
-                'department' => 'required',
-                'skills' => 'required|array', // Ensure skills is an array
-            ], [
-                'name.required' => 'The name field is required.',
-                'email.required' => 'The email field is required.',
-                'email.email' => 'Please provide a valid email address.',
-                'gender.required' => 'The gender field is required.',
-                'department.required' => 'The department field is required.',
-                'email.unique' => 'This email is already registered.',
-                'skills.required' => 'The skills field is required.',
-            ]);
-            $update_about =  employee::where("id", $id);
-            $update_data = [
-                "name" => isset($post['name']) ? $post['name'] : "",
-                "email" => isset($post['email']) ? $post['email'] : "",
-                "gender" => isset($post['gender']) ? $post['gender'] : "",
-                "department" => isset($post['department']) ? $post['department'] : "",
-                "skills" => isset($post['skills']) ? implode(',', $post['skills']) : "",
-            ];
-            $update_about->update($update_data);
-            return response()->json(['success' => true, 'message' => 'Employee updated successfully!']);
-      
-       } 
     }
        
 }  

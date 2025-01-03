@@ -83,10 +83,30 @@
           <li class="{{$routeName == 'employee.index' ? 'menu-item active' : 'menu-item'}}">
             <a href="{{route('employee.index')}}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-detail"></i>
-            
               <div data-i18n="Page 2">Employee</div>
-        
             </a>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-layout"></i>
+              <div data-i18n="Layouts">Product</div>
+            </a>
+
+            <ul class="menu-sub">
+             
+              <li class="{{$routeName == 'product.index' ? 'menu-item active' : 'menu-item'}}">
+                <a href="{{route('product.index')}}" class="menu-link">
+                  <div data-i18n="Content nav + Sidebar">Product Category</div>
+                </a>
+              </li>
+             
+              <li class="menu-item">
+                <a href="layouts-fluid.html" class="menu-link">
+                  <div data-i18n="Fluid">Product List</div>
+                </a>
+              </li>
+              
+            </ul>
           </li>
 
         </ul>

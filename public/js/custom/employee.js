@@ -6,22 +6,21 @@ $(document).ready(function() {
     }
 });
  // $(document).on('click', '#empform', function () {  
-       $('#empsave').on('click',function (e) {
-            e.preventDefault();
-            const id = $('#hid').val();
-            const url = id ? `employee/${id}` : 'employee';
-            const method = id ? 'PUT' : 'POST';
-            console.log(id);
-            let formname=document.getElementById('employeeform');
-            let f1=new FormData(formname);
-            console.log(f1);
-           $.ajax({
-                url:url,
-                method:method,
-                contentType: false, // Necessary for FormData
-                processData: false,
-                data:f1,
-                success: function (response) {
+       $('#empsave').on('click',function (e)
+        {
+                const id = $('#hid').val();
+                const url = 'employee';
+                console.log(id);
+                let formname = document.getElementById('employeeform');
+                let FormDataPass = new FormData(formname);
+                console.log("FormDataPass", FormDataPass);
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    contentType: false, // Necessary for FormData
+                    processData: false,
+                    data: FormDataPass,
+                    success: function (response) {
                     Swal.fire({
                         title: "Success!",
                         text:response.message,
@@ -98,6 +97,7 @@ function editemployee(id)
         success:function(response)
         {
             $('#exampleModal').modal('show');
+            $('#employeeform')[0].reset();
             $('#exampleModalLabel').text('Update Employee');
             $('#hid').val(response.id);
             $("#ename").val(response.name);

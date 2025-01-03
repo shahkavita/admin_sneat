@@ -14,8 +14,6 @@ Route::get('admin/employee/{id}', [employeeController::class,'viewdata'])->name(
 Route::delete('admin/employee/{id}', [employeeController::class,'deletedata'])->name('delete');
 
 Route::get('admin/employee/{id}', [employeeController::class,'data'])->name('edit');
-Route::PUT('admin/employee/{id}', [employeeController::class,'updatedata'])->name('update');
-
 
 Route::get('/admin/logout', function () {
     return view('admin/logout');

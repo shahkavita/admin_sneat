@@ -8,6 +8,7 @@ class employee extends Model
 {
     //
     protected $table="employee";
+    protected $primaryKey="id";
     protected $guarded=[];
     public $timestamps=false;
 }

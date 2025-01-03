@@ -24,7 +24,8 @@ $(document).ready(function() {
                     Swal.fire({
                         title: "Success!",
                         text:response.message,
-                        icon: "success"
+                        icon: "success",
+                        backdrop: true
                       });
                 loaddata();
                     $('#exampleModal').modal('hide');
@@ -40,6 +41,7 @@ $(document).ready(function() {
                 if (errors.department) $('.error-department').text(errors.department[0]);
                 if (errors.skills) $('.error-skills').text(errors.skills[0]);
             }
+            //$('.text-danger').text('');
         }
            });
         });
@@ -91,6 +93,7 @@ $(document).ready(function() {
 function editemployee(id)
 {
     console.log(id);
+    $('.text-danger').text('');
     $.ajax({
         url:'employee/'+id,
         method:'GET',
@@ -140,7 +143,8 @@ function deleteemployee(id)
                 Swal.fire({
                     title: "Success!",
                     text:response.message,
-                    icon: "success"
+                    icon: "success",
+                    backdrop: true
                   });  
             }
            });

@@ -93,18 +93,7 @@
         <h4 class="fw-bold py-3 mb-4">@yield('page-name')</h4>
         <p>
             @yield('content')
-
-         For more layout options use
-          <a href="https://themeselection.com/tools/generator/sneat/html" target="_blank" class="fw-bold"
-            >HTML starter template generator</a
-          >
-          and refer
-          <a
-            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation//layouts.html"
-            target="_blank"
-            class="fw-bold"
-            >Layout docs</a
-          >.
+        
         </p>
       </div>
       <!-- / Content -->

@@ -24,8 +24,19 @@
 
     <!-- Fonts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      /* Optional: Customize SweetAlert overlay */
+      .swal2-container {
+    z-index: 10500 !important;
+    position: fixed;
+}
+      .swal2-container {
+          background: rgba(0, 0, 0, 0.8); /* Black semi-transparent overlay */
+      }
+  </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,5 +67,6 @@
   </head>
 
   <body>
+   
     <!-- Layout wrapper -->
    

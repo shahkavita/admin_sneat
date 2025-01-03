@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\support\Facades\DB;
 use App\Http\Controllers\employeeController;
-Route::get('/admin', function () {
+Route::get('/', function () {
     return view('/admin/index');
 })->name('index');
 Route::get('admin/employee',[employeeController::class,'index'])->name('employee.index');

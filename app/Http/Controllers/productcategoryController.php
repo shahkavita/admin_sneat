@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\product;
+use App\Models\product_category;
 use Illuminate\Http\Request;
 
-class productController extends Controller
+class productcategoryController extends Controller
 {
     //
     public function index()
@@ -13,7 +13,7 @@ class productController extends Controller
     }
     public function getdata()
     {
-        $product=product::get();
+        $product=product_category::get();
         return response()->json($product);
     }
     public function savedata(Request $request)
@@ -31,7 +31,7 @@ class productController extends Controller
                     'name.required' => 'The name field is required.',
                     'status.required' => 'The status field is required.',
                 ]);   
-                $update_about =  product::where("id", $id);
+                $update_about =  product_category::where("id", $id);
                 $update_data = [
                     "name" => isset($post['name']) ? $post['name'] : "",
                     "status" => isset($post['status']) ? $post['status'] : "",
@@ -50,7 +50,7 @@ class productController extends Controller
                 'status.required' => 'The status field is required.',
                 
             ]);
-            product::create([
+            product_category::create([
                 'name' => $request->name,
                 'status' => $request->status,
                ]);
@@ -59,13 +59,13 @@ class productController extends Controller
     }
     public function deletedata(string $id)
     {
-        $product=product::find($id);
+        $product=product_category::find($id);
         $product->delete();
         return response()->json(['success' => true, 'message' => 'Category deleted successfully!']);
     }
     public function editdata(string $id)
     {  
-        $product=product::find($id);
+        $product=product_category::find($id);
         return response()->json($product);
     }
 

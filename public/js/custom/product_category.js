@@ -10,7 +10,7 @@ $(document).ready(function() {
           {
                   const id = $('#hid').val();
                   $('.text-danger').text('');
-                  const url = 'product';
+                  const url = 'category';
                   console.log(id);
                   let formname = document.getElementById('productform');
                   let FormDataPass = new FormData(formname);
@@ -22,15 +22,18 @@ $(document).ready(function() {
                       processData: false,
                       data: FormDataPass,
                       success: function (response) {
+                      loaddata();
                       Swal.fire({
                           title: "Success!",
                           text:response.message,
                           icon: "success",
                           backdrop: true
                         });
-                  loaddata();
                       $('#exampleModal').modal('hide');
                       $('#productform')[0].reset();
+                      $('#exampleModalLabel').text('Add Category');
+                      $('#categorysave').val('Submit');
+                      $('#hid').val("");
                       $('.text-danger').text('');
              },
              error: function (xhr) {
@@ -50,7 +53,7 @@ $(document).ready(function() {
     function loaddata()
      {
       $.ajax({
-        url: 'product/index',
+        url: 'category/index',
         method: 'GET',
         success: function (data) {
             const tableBody = $('#productTable');
@@ -103,7 +106,7 @@ $(document).ready(function() {
       console.log(id);
       $('.text-danger').text('');
       $.ajax({
-          url:'product/'+id,
+          url:'category/'+id,
           method:'GET',
           success:function(response)
           {
@@ -131,7 +134,7 @@ $(document).ready(function() {
       }).then((result) => {
           if (result.isConfirmed) {
              $.ajax({
-              url:'product/'+id,
+              url:'category/'+id,
               method:'DELETE',
               success:function(response)
               {

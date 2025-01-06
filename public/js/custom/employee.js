@@ -1,54 +1,4 @@
-$(document).ready(function() {  
-  loaddata();
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
- // $(document).on('click', '#empform', function () {  
-       $('#empsave').on('click',function (e)
-        {
-                const id = $('#hid').val();
-                const url = 'employee';
-                console.log(id);
-                let formname = document.getElementById('employeeform');
-                let FormDataPass = new FormData(formname);
-                console.log("FormDataPass", FormDataPass);
-                $.ajax({
-                    url: url,
-                    method: 'POST',
-                    contentType: false, // Necessary for FormData
-                    processData: false,
-                    data: FormDataPass,
-                    success: function (response) {
-                    Swal.fire({
-                        title: "Success!",
-                        text:response.message,
-                        icon: "success",
-                        backdrop: true
-                      });
-                loaddata();
-                    $('#exampleModal').modal('hide');
-                    $('#employeeform')[0].reset();
-           },
-           error: function (xhr) {
-            const errors = xhr.responseJSON.errors;
-            $('.text-danger').text('');
-            if (errors) {
-                if (errors.name) $('.error-name').text(errors.name[0]);
-                if (errors.email) $('.error-email').text(errors.email[0]);
-                if (errors.gender) $('.error-gender').text(errors.gender[0]);
-                if (errors.department) $('.error-department').text(errors.department[0]);
-                if (errors.skills) $('.error-skills').text(errors.skills[0]);
-            }
-            //$('.text-danger').text('');
-        }
-           });
-        });
-
-        });
-   //});
-  function loaddata()
+function loaddata()
    {
     $.ajax({
       url: 'employee/index',
@@ -94,13 +44,60 @@ $(document).ready(function() {
                 tableBody.append(row);
             
             });
-         }
-          
-        
+         }          
       },
-     
   });
 }
+$(document).ready(function(){
+    loaddata();
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('#empsave').on('click',function (e)
+    {
+            const id = $('#hid').val();
+            const url = 'employee';
+            console.log(id);
+            let formname = document.getElementById('employeeform');
+            let FormDataPass = new FormData(formname);
+            console.log("FormDataPass", FormDataPass);
+            $.ajax({
+                url: url,
+                method: 'POST',
+                contentType: false, // Necessary for FormData
+                processData: false,
+                data: FormDataPass,
+                success: function (response) {
+                    loaddata();
+                    $('#employeeform')[0].reset();
+                    Swal.fire({
+                    title: "Success!",
+                    text:response.message,
+                    icon: "success",
+                    backdrop: true
+                  });
+                $('#exampleModal').modal('hide'); 
+                $('#hid').val("");
+                $('#exampleModalLabel').text('Add Employee');
+                $('#empsave').val('Submit'); 
+
+       },
+       error: function (xhr) {
+        const errors = xhr.responseJSON.errors;
+        $('.text-danger').text('');
+        if (errors) {
+            if (errors.name) $('.error-name').text(errors.name[0]);
+            if (errors.email) $('.error-email').text(errors.email[0]);
+            if (errors.gender) $('.error-gender').text(errors.gender[0]);
+            if (errors.department) $('.error-department').text(errors.department[0]);
+            if (errors.skills) $('.error-skills').text(errors.skills[0]);
+        }
+    }
+       });
+    });
+});
 function editemployee(id)
 {
     console.log(id);

@@ -1,12 +1,12 @@
 @extends('layout.main')
 @section('title')
-    Product List
+    Category
 @endsection
 @section('page-name')
-Product List
+Category
 @endsection
 @section('content')
-@include('admin.Product.productmodal')
+@include('admin.Product.categorymodal')
 <!-- Bootstrap Table with Header - Footer -->
 <div class="card">
   <div class="table-responsive text-nowrap">
@@ -27,4 +27,7 @@ Product List
     </table>
   </div>
 </div>
+@endsection
+@section('scripts')
+<script src="{{ asset('js/custom/product_category.js') }}"></script>
 @endsection

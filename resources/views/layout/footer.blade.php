@@ -2,11 +2,6 @@
  <footer class="content-footer footer bg-footer-theme">
     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
       <div class="mb-2 mb-md-0">
-        @yield('scripts')
-      
-        <script>
-          
-        </script>
        
            </div>
       <div>
@@ -31,9 +26,9 @@
 <!-- / Layout wrapper -->
 
 <!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+<!-- build:js assets/vendor/js/core.js 
 <script src="{{asset('js/custom/employee.js')}}"></script>
-<script src="{{asset('js/custom/product.js')}}"></script>
+<script src="{{asset('js/custom/product.js')}}"></script>-->
 
 <!-- build:js assets/vendor/js/core.js -->
 

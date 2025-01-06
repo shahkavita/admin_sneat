@@ -97,5 +97,6 @@
         </p>
       </div>
       <!-- / Content -->
+      @yield('scripts')
 @include('layout.footer')
      

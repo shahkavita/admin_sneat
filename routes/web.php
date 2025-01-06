@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\support\Facades\DB;
 use App\Http\Controllers\employeeController;
-use App\Http\Controllers\productController;
+use App\Http\Controllers\productcategoryController;
 Route::get('/', function () {
     return view('/admin/index');
 })->name('index');
@@ -15,12 +15,14 @@ Route::get('admin/employee/{id}', [employeeController::class,'viewdata'])->name(
 Route::delete('admin/employee/{id}', [employeeController::class,'deletedata'])->name('delete');
 Route::get('admin/employee/{id}', [employeeController::class,'data'])->name('edit');
 
-Route::get('admin/product',[productController::class,'index'])->name('product.index');
-Route::get('admin/product/index', [productController::class,'getdata'])->name('admin.categorylist');
-Route::delete('admin/product/{id}', [productController::class,'deletedata'])->name('admin.delete');
-Route::post('admin/product', [productController::class, 'savedata'])->name('save');
 
-Route::get('admin/product/{id}', [productController::class,'editdata'])->name('admin.edit');
+Route::get('admin/product', [productcategoryController::class,'index'])->name('product.index');
+Route::get('admin/product/category',[productcategoryController::class,'index'])->name('product.category');
+Route::get('admin/product/category/index', [productcategoryController::class,'getdata'])->name('admin.categorylist');
+Route::delete('admin/product/category/{id}', [productcategoryController::class,'deletedata'])->name('admin.delete');
+Route::post('admin/product/category', [productcategoryController::class, 'savedata'])->name('save');
+
+Route::get('admin/product/category/{id}', [productcategoryController::class,'editdata'])->name('admin.edit');
 
 Route::get('/admin/logout', function () {
     return view('admin/logout');

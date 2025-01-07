@@ -1,12 +1,31 @@
-$(document).ready(function() {  
-    loaddata();
+
+$(document).ready(function(){
+    $('#data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('product.category') }}",
+        columns: [
+
+            {data: 'id', name: 'id'},
+
+            {data: 'name', name: 'name'},
+
+            {data: 'status', name: 'status'},
+
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+
+        ]
+
+    });
+
+   // loaddata();
     $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
-   // $(document).on('click', '#empform', function () {  
-         $('#categorysave').on('click',function (e)
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+    
+  $('#categorysave').on('click',function (e)
           {
                   const id = $('#hid').val();
                   $('.text-danger').text('');
@@ -47,59 +66,10 @@ $(document).ready(function() {
           }
              });
           });
-  
-          });
-     //});
-    function loaddata()
+});
+   function loaddata()
      {
-      $.ajax({
-        url: 'category/index',
-        method: 'GET',
-        success: function (data) {
-            const tableBody = $('#productTable');
-            tableBody.empty(); // Clear existing rows
-  
-            // Loop through the employees and append rows\
-            if (data.length === 0) {
-              tableBody.append(`
-                  <tr>
-                      <td colspan="4" style="text-align: center;">No data available</td>
-                  </tr>
-              `);
-          }
-           else
-           {
-              data.forEach(product => {
-                const statusButton = product.status === 1
-                    ? `<button class="btn btn-success">Active</button>`
-                    : `<button class="btn btn-danger">Inactive</button>`;
-
-                  const row = `
-                      <tr>
-                          <td>${product.id}</td>
-                          <td>${product.name}</td>
-                          <td>${statusButton}</td>
-                          
-                         <td>
-                                <button class="btn btn-info btn-sm" 
-                                onclick='editcategory(${product.id })'id="catgoryedit" name="categoryedit">
-                                <i class="fa fa-pencil" aria-hidden="true"></i></button>
-                              
-                                <button class="btn btn-danger btn-sm" 
-                                onclick='deletecategory(${product.id })' id="categorydel" name="categorydel">
-                                <i class="fa fa-trash" aria-hidden="true"></i></button>
-                         </td>     
-                      </tr>
-                  `;
-                  tableBody.append(row);
-              
-              });
-           }
-            
-          
-        },
        
-    });
   }
   function editcategory(id)
   {

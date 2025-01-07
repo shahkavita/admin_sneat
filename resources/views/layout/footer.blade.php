@@ -27,10 +27,8 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js 
-<script src="{{asset('js/custom/employee.js')}}"></script>
-<script src="{{asset('js/custom/product.js')}}"></script>-->
 
-<!-- build:js assets/vendor/js/core.js -->
+-- build:js assets/vendor/js/core.js -->
 
 <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../../assets/vendor/libs/popper/popper.js"></script>

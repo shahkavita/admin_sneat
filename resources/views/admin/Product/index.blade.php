@@ -10,24 +10,33 @@ Category
 <!-- Bootstrap Table with Header - Footer -->
 <div class="card">
   <div class="table-responsive text-nowrap">
-    <table class="table">
+    <table id="data-table" class="table table-striped" >
+
       <thead>
-        <tr>
-          <th style="width: 10px">Id</th>
-          <th style="width: 10px">Name</th>
-          <th style="width: 20px">Status</th>
-          <th style="width: 20px">Actions</th>
-         
-        </tr>
+
+          <tr>
+
+              <th>No</th>
+
+              <th>Name</th>
+
+              <th>Status</th>
+
+              <th>Action</th>
+
+          </tr>
+
       </thead>
-      <tbody id="productTable">
-            
+
+      <tbody>
+
       </tbody>
-      
-    </table>
+
+  </table>
+
   </div>
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('js/custom/product_category.js') }}"></script>
+<script src="{{ asset('js/custom/product_category.js') }}"></script> 
 @endsection

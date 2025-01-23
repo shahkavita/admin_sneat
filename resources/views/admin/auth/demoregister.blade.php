@@ -1,9 +1,31 @@
-<div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-      <!-- Menu -->
+@extends('admin.auth.layout.main')
+@section('title')
+  Login | Sneat
+@endsection
+@section('content')
+<div class="authentication-wrapper authentication-cover">
+  <div class="authentication-inner row m-0">
+    <!-- /Left Text -->
+    <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center p-5">
+      <div class="w-100 d-flex justify-content-center">
+        <img
+          src="{{url('assets/img/illustrations/boy-with-rocket-light.png')}}"
+          class="img-fluid"
+          alt="Login image"
+          width="700"
+          data-app-dark-img="illustrations/boy-with-rocket-dark.png"
+          data-app-light-img="illustrations/boy-with-rocket-light.png"
+        />
+      </div>
+    </div>
+    <!-- /Left Text -->
 
-      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-        <div class="app-brand demo">
+    <!-- Login -->
+    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
+      <div class="w-px-400 mx-auto">
+        <!-- Logo -->
+        <div class="app-brand mb-5">
+         
             <span class="app-brand-logo demo">
               <svg
                 width="25"
@@ -59,53 +81,81 @@
                 </g>
               </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
-          </a>
-
-          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
           </a>
         </div>
-        <div class="menu-inner-shadow"></div>
+        <!-- /Logo -->
+        <h4 class="mb-2">Welcome to Sneat! 👋</h4>
+        <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-        <ul class="menu-inner py-1">
-          @php
-         $routeName = request()->route()->getName();
-       // echo $routeName; 
-        @endphp
-          <!-- Page -->
-          <li class="{{$routeName == 'dashboard' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('dashboard')}}" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Page 1">Dashboard</div>
-            </a>
-          </li>
-          <li class="{{$routeName == 'employee.index' ? 'menu-item active' : 'menu-item'}}">
-            <a href="{{route('employee.index')}}" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-detail"></i>
-              <div data-i18n="Page 2">Employee</div>
-            </a>
-          </li>
-          <li class="{{$routeName == 'product.category' ? 'menu-item active' : 'menu-item'}}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-layout"></i>
-              <div data-i18n="Layouts">Product</div>
-            </a>
-            <ul class="menu-sub">
-              <li class="{{$routeName == 'product.category' ? 'menu-item active' : 'menu-item'}}">
-                <a href="{{route('product.category')}}" class="menu-link">
-                  <div data-i18n="Content nav + Sidebar">Category</div>
-                </a>
-              </li>
-             
-              <li class="menu-item">
-                <a href="layouts-fluid.html" class="menu-link">
-                  <div data-i18n="Fluid">Product</div>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
+        <form id="loginform" class="mb-3" method="POST">
+          @csrf
+          <div class="mb-3">
+            <label for="email" class="form-label">Email or Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email-username"
+              placeholder="Enter your email or username"
+              autofocus
+            />
+          </div>
+          <div class="mb-3 form-password-toggle">
+            <div class="d-flex justify-content-between">
+              <label class="form-label" for="password">Password</label>
+              <a href="{{route('forgot')}}">
+                <small>Forgot Password?</small>
+              </a>
+            </div>
+            <div class="input-group input-group-merge">
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                name="password"
+                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                aria-describedby="password"
+              />
+              <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="remember-me" />
+              <label class="form-check-label" for="remember-me"> Remember Me </label>
+            </div>
+          </div>
+          <button class="btn btn-primary d-grid w-100" id="login">Sign in</button>
+        </form>
 
-        </ul>
-      </aside>
+        <p class="text-center">
+          <span>New on our platform?</span>
+          <a href="{{route('register')}}">
+            <span>Create an account</span>
+          </a>
+        </p>
+
+        <div class="divider my-4">
+          <div class="divider-text">or</div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
+            <i class="tf-icons bx bxl-facebook"></i>
+          </a>
+
+          <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
+            <i class="tf-icons bx bxl-google-plus"></i>
+          </a>
+
+          <a href="javascript:;" class="btn btn-icon btn-label-twitter">
+            <i class="tf-icons bx bxl-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- /Login -->
+  </div>
+</div>
+@endsection

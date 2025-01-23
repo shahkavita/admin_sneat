@@ -10,7 +10,7 @@ Employee List
 <!-- Bootstrap Table with Header - Footer -->
 <div class="card">
   <div class="table-responsive text-nowrap">
-    <table class="table">
+    <table class="table" >
       <thead>
         <tr>
           <th style="width: 10px">Id</th>

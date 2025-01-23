@@ -8,9 +8,10 @@ Category
 @section('content')
 @include('admin.Product.categorymodal')
 <!-- Bootstrap Table with Header - Footer -->
+
 <div class="card">
   <div class="table-responsive text-nowrap">
-    <table id="data-table" class="table table-striped" >
+    <table id="data-table" class="datatables-users table border-top" >
 
       <thead>
 

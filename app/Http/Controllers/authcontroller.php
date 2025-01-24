@@ -51,15 +51,15 @@ class authcontroller extends Controller
         /*echo '<pre>';
         print_r($user);
         die;*/
-        return response()->json([
-            'success' => true, 
-            'message' => 'User created successfully',
-            'redirect' => route('login'),
-            ]);
+        return response()->json(
+            ['success' => 'Register successful', 
+            'redirect_url' => route('login') ]);
+        
     }
     
     public function loginuser(Request $request)
     {
+        
         
         $request->validate([
             'email'=>'required|email',
@@ -67,17 +67,11 @@ class authcontroller extends Controller
         ]);
     
         $credentials = $request->only('email','password');
-        /*echo '<pre>';
-        print_r( $credentials);
-        die;*/
+      
         if(Auth::attempt($credentials)) {
             // Authentication passed
-            $request->session()->regenerate();
-            return response()->json([
-                'success' => true,
-                'message' => 'Welcome!!',
-                'redirect' => route('dashboard'),
-            ]);
+           // $request->session()->regenerate();
+           return response()->json(['success' => 'Login successful', 'redirect_url' => route('dashboard')]);
         }
         else {
             return response()->json([

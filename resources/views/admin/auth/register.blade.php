@@ -73,7 +73,7 @@ Register | Sneat
               <h4 class="mb-2">Adventure starts here 🚀</h4>
               <p class="mb-4">Make your app management easy and fun!</p>
 
-              <form id="register" class="mb-3" method="POST" name="register">
+              <form id="register" class="mb-3" method="POST" name="register" action="{{ route('register.user') }}">
                 @csrf
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>

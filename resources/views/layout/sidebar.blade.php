@@ -1,7 +1,7 @@
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-      <!-- Menu -->
-
+        
+  
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
             <span class="app-brand-logo demo">
@@ -59,7 +59,9 @@
                 </g>
               </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">
+              
+              Admin</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

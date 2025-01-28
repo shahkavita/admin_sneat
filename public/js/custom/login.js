@@ -119,8 +119,7 @@ $(document).ready(function() {
             contentType: false,
             success: function(response) {
                 console.log("update response: ", response);
-
-                if (response.success) {
+                if (response.status) {
                     Swal.fire({
                         title: 'Password Updated Successful!',
                         text: response.message,
@@ -137,9 +136,18 @@ $(document).ready(function() {
                     alert("Please try again.");
                 }
             },
-            error: function(xhr, status, error) {
-                // General error handling for login request
-                alert("Something went wrong: " + xhr.responseText);
+            error: function(xhr) {
+                if (xhr.status === 422) { // Validation error
+                    const errors = xhr.responseJSON.errors;
+                    if (errors.password_confirm) {
+                        $('#email-error').text(errors.password_confirm[0]);
+                    }
+                    if (errors.password) {
+                        $('#password-error').text(errors.password[0]);
+                    }
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
             }
         });
     });
@@ -153,7 +161,7 @@ $(document).ready(function() {
         formdata.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
         $.ajax({
-            url: "/resetpassword",
+            url: "/forgotpassword",
             type: 'POST',
             data: formdata,
             processData: false,

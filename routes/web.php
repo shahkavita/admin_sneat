@@ -20,11 +20,13 @@ Route::get('/login', [authcontroller::class, 'login'])->name('login');
 Route::get('/logout', [authcontroller::class, 'logout'])->name('admin.logout');
 
 Route::post('/login', [authcontroller::class, 'loginuser'])->name('login.user');
-Route::get('/forgot', [authcontroller::class, 'forgotpassword'])->name('forgot');
 Route::post('/register', [authcontroller::class, 'registeruser'])->name('register.user');
-Route::post('/resetpassword', [authcontroller::class, 'resetpass'])->name('password.reset');
-Route::post('/resetpassword/{token}', [authcontroller::class, 'reset'])->name('password.resetform');
-Route::post('/updatepassword',[authcontroller::class,'updatepassword'])->name('password.update');
+Route::get('/forgot', [authcontroller::class, 'forgotpassword'])->name('forgot');
+Route::post('/forgotpassword', [authcontroller::class, 'resetpass'])->name('forgot.password');
+
+Route::get('/reset-password/{token}', [authcontroller::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/updatepassword', [authcontroller::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/', [authcontroller::class, 'index'])->name('dashboard');

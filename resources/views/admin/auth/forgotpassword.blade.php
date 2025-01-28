@@ -89,7 +89,7 @@ Forgot Password | Sneat
             <!-- /Logo -->
             <h4 class="mb-2">Forgot Password? 🔒</h4>
             <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
-            <form id="Authentication" class="mb-3" method="POST">
+            <form id="Authentication" class="mb-3" method="POST" action={{route('forgot.password')}}>
               @csrf
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>

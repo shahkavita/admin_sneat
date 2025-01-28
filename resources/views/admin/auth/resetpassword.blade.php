@@ -88,7 +88,7 @@ Reset Password | Sneat
             </div>
             <!-- /Logo -->
             <h4 class="mb-2">Reset Password? 🔒</h4>
-             <form id="resetpassword" class="mb-3" method="POST" action="{{route('password.update')}}">
+             <form id="resetpassword" class="mb-3" method="POST" action="{{route('reset.password.post')}}">
               @csrf
           
               <div class="mb-3">
@@ -108,15 +108,10 @@ Reset Password | Sneat
               </div>
               <div class="mb-3">
                 <label for="confirm Password" class="form-label">confirm Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="confirmpassword"
-                  name="confirmpassword"
-                  autofocus
-                />
+                <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
+                              
               </div>
-              <button class="btn btn-primary d-grid w-100" id="updatepassword">Submit Password</button>
+              <button class="btn btn-primary d-grid w-100" id="updatepassword">Reset Password</button>
             </form>
           </div>
         </div>

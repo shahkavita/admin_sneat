@@ -102,4 +102,100 @@ $(document).ready(function() {
             }
         });
     });
+    $("#updatepassword").on("click", function(e) {
+        e.preventDefault(); // Prevent form submission
+
+        var form = document.getElementById('resetpassword');
+        var formdata = new FormData(form);
+
+        // Add CSRF token to FormData manually (optional since it's in the AJAX setup)
+        formdata.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+        $.ajax({
+            url: "/updatepassword",
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log("update response: ", response);
+
+                if (response.success) {
+                    Swal.fire({
+                        title: 'Password Updated Successful!',
+                        text: response.message,
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000 // Message will show for 3 seconds
+                    }).then(() => {
+                        // Redirect after 3 seconds
+                        if (response.redirect_url) {
+                            window.location.href = response.redirect_url;
+                        }
+                    });
+                } else {
+                    alert("Please try again.");
+                }
+            },
+            error: function(xhr, status, error) {
+                // General error handling for login request
+                alert("Something went wrong: " + xhr.responseText);
+            }
+        });
+    });
+    $("#forgot").on("click", function(e) {
+        e.preventDefault(); // Prevent form submission
+
+        var form = document.getElementById('Authentication');
+        var formdata = new FormData(form);
+
+        // Add CSRF token to FormData manually (optional since it's in the AJAX setup)
+        formdata.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+        $.ajax({
+            url: "/resetpassword",
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log("Login response: ", response);
+                if (response.status) {
+                    // $('#Authentication')[0].reset(); // Reset the form fields
+                    Swal.fire({
+                        title: 'Forgot Password !',
+                        text: response.message,
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 4000 // Message will show for 1 second
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Forgot Password !',
+                        text: response.message,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 4000 // Message will show for 1 second
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                // General error handling for login request
+
+                let errors = xhr.responseJSON.errors;
+                if (errors && errors.email) {
+                    errorMessage = errors.email[0];
+                    Swal.fire({
+                        title: 'Forgot Password Error',
+                        text: errorMessage,
+                        icon: 'error',
+                        showConfirmButton: true,
+                        timer: 3000 // Message will show for 3 seconds
+                    });
+                    $('#Authentication')[0].reset();
+                }
+
+            }
+        });
+    });
 });

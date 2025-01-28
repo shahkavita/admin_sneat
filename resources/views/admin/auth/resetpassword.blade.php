@@ -1,6 +1,6 @@
 @extends('admin.auth.layout.main')
 @section('title')
-Forgot Password | Sneat
+Reset Password | Sneat
 @endsection
 @section('content')
     <!-- Content -->
@@ -87,29 +87,37 @@ Forgot Password | Sneat
               </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Forgot Password? 🔒</h4>
-            <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
-            <form id="Authentication" class="mb-3" method="POST">
+            <h4 class="mb-2">Reset Password? 🔒</h4>
+             <form id="resetpassword" class="mb-3" method="POST" action="{{route('password.update')}}">
               @csrf
+          
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <input type="hidden" name="token" id="token" value="{{ $token }}">
+                <label for="mail" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="email" value="{{ $email }}" readonly>
+              </div>
+              <div class="mb-3">
+                <label for="Password" class="form-label">Password</label>
                 <input
-                  type="text"
+                  type="password"
                   class="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="Enter your email"
+                  id="password"
+                  name="password"
                   autofocus
                 />
               </div>
-              <button class="btn btn-primary d-grid w-100" id="forgot">Send Reset Link</button>
+              <div class="mb-3">
+                <label for="confirm Password" class="form-label">confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmpassword"
+                  name="confirmpassword"
+                  autofocus
+                />
+              </div>
+              <button class="btn btn-primary d-grid w-100" id="updatepassword">Submit Password</button>
             </form>
-            <div class="text-center">
-              <a href="{{route('login')}}" class="d-flex align-items-center justify-content-center">
-                <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
-                Back to login
-              </a>
-            </div>
           </div>
         </div>
         <!-- /Forgot Password -->

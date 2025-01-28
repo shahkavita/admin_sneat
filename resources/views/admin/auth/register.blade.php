@@ -84,6 +84,7 @@ Register | Sneat
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                  <span id="email-error" style="color: red;"></span>
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Password</label>
@@ -97,6 +98,7 @@ Register | Sneat
                       aria-describedby="password"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    <span id="password-error" style="color: red;"></span> 
                   </div>
                 </div>
                 <button id="signup" class="btn btn-primary">Sign Up</button>

@@ -96,9 +96,17 @@ $(document).ready(function() {
                     alert("Invalid login credentials. Please try again.");
                 }
             },
-            error: function(xhr, status, error) {
-                // General error handling for login request
-                alert("Something went wrong: " + xhr.responseText);
+            error: function(xhr) {
+                var errors = xhr.responseJSON.errors;
+
+                // Display errors inside the span tags
+
+                if (errors.email) {
+                    $('#email-error').text(errors.email[0]);
+                }
+                if (errors.password) {
+                    $('#password-error').text(errors.password[0]);
+                }
             }
         });
     });
@@ -137,16 +145,14 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr) {
-                if (xhr.status === 422) { // Validation error
-                    const errors = xhr.responseJSON.errors;
-                    if (errors.password_confirm) {
-                        $('#email-error').text(errors.password_confirm[0]);
-                    }
-                    if (errors.password) {
-                        $('#password-error').text(errors.password[0]);
-                    }
-                } else {
-                    alert('Something went wrong. Please try again.');
+                var errors = xhr.responseJSON.errors;
+                // alert(errors)
+                // Display errors inside the span tags
+                if (errors.password) {
+                    $('#password-error').text(errors.password[0]);
+                }
+                if (errors.password_confirmation) {
+                    $('#password_confirmation-error').text(errors.password_confirmation[0]);
                 }
             }
         });

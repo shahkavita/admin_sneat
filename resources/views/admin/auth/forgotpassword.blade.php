@@ -101,6 +101,7 @@ Forgot Password | Sneat
                   placeholder="Enter your email"
                   autofocus
                 />
+                <span id="email-error" style="color: red;"></span>
               </div>
               <button class="btn btn-primary d-grid w-100" id="forgot">Send Reset Link</button>
             </form>

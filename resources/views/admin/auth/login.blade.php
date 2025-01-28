@@ -101,6 +101,7 @@ Login | Sneat
                   placeholder="Enter your email or username"
                   autofocus
                 />
+                <span id="email-error" style="color: red;"></span>
               </div>
               <div class="mb-3 form-password-toggle">
                 <div class="d-flex justify-content-between">
@@ -119,6 +120,7 @@ Login | Sneat
                     aria-describedby="password"
                   />
                   <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  <span id="password-error" style="color: red;"></span> 
                 </div>
               </div>
               

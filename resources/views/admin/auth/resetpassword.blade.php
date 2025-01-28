@@ -105,11 +105,12 @@ Reset Password | Sneat
                   name="password"
                   autofocus
                 />
+                <span id="password-error" style="color: red;"></span>
               </div>
               <div class="mb-3">
                 <label for="confirm Password" class="form-label">confirm Password</label>
                 <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
-                              
+                <span id="password_confirmation-error" style="color: red;"></span> <!-- Error message for confirm password -->            
               </div>
               <button class="btn btn-primary d-grid w-100" id="updatepassword">Reset Password</button>
             </form>

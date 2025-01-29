@@ -3,45 +3,29 @@
 namespace App\Http\Controllers;
 use App\Models\product_category;
 use Illuminate\Http\Request;
-
-use Yajra\DataTables\Facades\DataTables;
+use DataTables;
 class productcategoryController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index()
+    {
+        return view('admin.Product.index');
+    }
+    public function getlist(Request $request)
     {
         if ($request->ajax()) {
-
-            $data = product_category::select('*');
-
-            return Datatables::of($data)
-
-                    ->addIndexColumn()
-                    ->addColumn('status', function($row){
-                        $statusClass = $row->status == 'active' ? 'btn-success' : 'btn-danger';
-                       if($row->status == 0)
-                       {
-                        return "<button class='btn btn-danger'>Inactive</button>";
-                       } 
-                       else
-                       {
-                        return "<button class='btn btn-success'>Active</button>";
-                       }
-          
-
+            $data = product_category::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return '<button class="edit btn btn-success btn-sm" data-id="'.$row->id.'">Edit</button>
+                            <button class="delete btn btn-danger btn-sm" data-id="'.$row->id.'">Delete</button>';
                 })
-                    ->addColumn('action', function($row){
-                            $btn = '<button name="editcategory" id="editcategory" class="btn btn-primary btn-sm">Edit</button>
-                                    <button name="deletecategory" id="deletecategory" class="btn btn-danger btn-sm">Delete</button>';
-                            return $btn;
-
-                    })
-                    ->rawColumns(['status','action'])
-                    ->make(true);
-
-        }     
-        return view ('admin.Product.index'); 
+                ->rawColumns(['action'])
+                ->make(true);
+            }
     }
+
     public function getdata()
     {
         $product=product_category::get();

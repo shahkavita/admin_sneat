@@ -29,8 +29,8 @@
           </form>
         </div>
         <div class="modal-footer">
+          <input type="submit" class="btn btn-primary" name="categorysave" id="categorysave" value="Save"/>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <input type="submit" class="btn btn-primary" name="categorysave" id="categorysave"/>
         </div>
       </div>
     </div>

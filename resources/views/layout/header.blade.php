@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html
   lang="en"
   class="light-style layout-navbar-fixed layout-menu-fixed"
@@ -19,13 +19,9 @@
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-    
-
-    <link rel="stylesheet" 
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+      <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-      
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -35,8 +31,12 @@
         <link rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!-- Icons. Uncomment required icon fonts -->
         <link rel="stylesheet" href="{{url('assets/vendor/fonts/boxicons.css')}}" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
       /* Optional: Customize SweetAlert overlay */
       .swal2-container {
@@ -47,11 +47,8 @@
           background: rgba(0, 0, 0, 0.8); /* Black semi-transparent overlay */
       }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  
 <!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{url('assets/vendor/css/rtl/core.css')}}" />

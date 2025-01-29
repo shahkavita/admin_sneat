@@ -39,6 +39,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         Route::get('/product', [productcategoryController::class,'index'])->name('product.index');
         Route::get('/product/category',[productcategoryController::class,'index'])->name('product.category');
+        Route::get('/list',[productcategoryController::class,'getlist'])->name('product.list');
         Route::get('/product/category/index', [productcategoryController::class,'getdata'])->name('admin.categorylist');
         Route::delete('/product/category/{id}', [productcategoryController::class,'deletedata'])->name('admin.delete');
         Route::post('/product/category', [productcategoryController::class, 'savedata'])->name('category.save');

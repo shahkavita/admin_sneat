@@ -11,7 +11,7 @@ Category
 
 <div class="card">
   <div class="table-responsive text-nowrap">
-    <table id="data-table" class="datatables-users table border-top" >
+    <table id="categoryTable"  class="datatables-users table border-top" >
 
       <thead>
 
@@ -29,8 +29,10 @@ Category
 
       </thead>
 
-      <tbody>
-
+      <tbody id="data">
+          <tr>
+            <td>1</td>
+          </tr>
       </tbody>
 
   </table>
@@ -39,5 +41,7 @@ Category
 </div>
 @endsection
 @section('scripts')
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('js/custom/product_category.js') }}"></script> 
 @endsection

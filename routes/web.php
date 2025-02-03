@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\support\Facades\DB;
 
+use App\Http\Controllers\productController;
 use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\employeeController;
 use App\Http\Controllers\productcategoryController;
@@ -39,13 +40,14 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         Route::get('/product', [productcategoryController::class,'index'])->name('product.index');
         Route::get('/product/category',[productcategoryController::class,'index'])->name('product.category');
-        Route::get('/list',[productcategoryController::class,'getlist'])->name('product.list');
+        Route::get('/categorylist',[productcategoryController::class,'getlist'])->name('category.list');
+        
         Route::get('/product/category/index', [productcategoryController::class,'getdata'])->name('admin.categorylist');
         Route::delete('/product/category/{id}', [productcategoryController::class,'deletedata'])->name('admin.delete');
         Route::post('/product/category', [productcategoryController::class, 'savedata'])->name('category.save');
-        Route::get('/product/category/{id}', [productcategoryController::class,'editdata'])->name('admin.edit');       
+        Route::get('/product/category/{id}', [productcategoryController::class,'editdata'])->name('admin.edit');
+        Route::get('/productlist',[productController::class,'index'])->name('productlist.index');
 });
-
 Route::get('admin/product/demo',[demoController::class,'get'])->name('demo.get');
 Route::get('admin/product/demo/index', [demoController::class, 'index'])->name('demo.index');
 

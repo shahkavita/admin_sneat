@@ -101,7 +101,7 @@
               </li>
              
               <li class="menu-item">
-                <a href="layouts-fluid.html" class="menu-link">
+                <a href="{{route('productlist.index')}}" class="menu-link">
                   <div data-i18n="Fluid">Product</div>
                 </a>
               </li>

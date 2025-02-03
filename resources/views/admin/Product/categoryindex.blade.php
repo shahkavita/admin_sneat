@@ -1,9 +1,9 @@
 @extends('layout.main')
 @section('title')
-    Category
+    Product 
 @endsection
 @section('page-name')
-Category
+Product List
 @endsection
 @section('content')
 @include('admin.Product.categorymodal')
@@ -11,16 +11,30 @@ Category
 
 <div class="card">
   <div class="table-responsive text-nowrap">
-    <table id="categoryTable">
+    <table id="categoryTable"  class="datatables-users table border-top" >
+
       <thead>
+
           <tr>
-              <th>ID</th>
+
+              <th>No</th>
+
               <th>Name</th>
+
               <th>Status</th>
-              <th>Actions</th>
+
+              <th>Action</th>
+
           </tr>
+
       </thead>
-      <tbody></tbody>
+
+      <tbody id="data">
+          <tr>
+           
+          </tr>
+      </tbody>
+
   </table>
 
   </div>

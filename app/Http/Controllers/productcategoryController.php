@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 use App\Models\product_category;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\Facades\Datatables;
 class productcategoryController extends Controller
 {
     //
     public function index()
     {
-        return view('admin.Product.index');
+       // return view('admin.Product.democategory');
+       return view('admin.Product.index');
     }
     public function getlist(Request $request)
     {
         if ($request->ajax()) {
-            $data = product_category::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    return '<button class="edit btn btn-success btn-sm" data-id="'.$row->id.'">Edit</button>
-                            <button class="delete btn btn-danger btn-sm" data-id="'.$row->id.'">Delete</button>';
+            $categories = product_category::select(['id', 'name', 'status']);
+
+            return DataTables::of($categories)
+                ->addColumn('actions', function ($category) {
+                    return '<button onclick="editCategory(' . $category->id . ', \'' . $category->name . '\')">Edit</button>
+                            <button onclick="deleteCategory(' . $category->id . ')">Delete</button>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['actions']) // Allows HTML rendering
                 ->make(true);
-            }
+        }
     }
 
     public function getdata()

@@ -1,18 +1,23 @@
-$(document).ready(function() {
+var jq = jQuery.noConflict();
+jq(document).ready(function() {
+    console.log($.fn.jquery);
+    console.log(typeof $.fn.DataTable);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#categoryTable').DataTable({
+
+    jq('#categoryTable').DataTable({
         processing: true,
         serverSide: true,
-        "bDestroy": true,
-        ajax: "/list",
+        ajax: "{{ route('category.list') }}", // Ensure this route exists!
+        //ajax: "{{ route('demo.index') }}",
         columns: [
-            { data: 'id' },
-            { data: 'name' },
-            { data: 'action', orderable: false, searchable: false }
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'status', name: 'status' },
+            { data: 'actions', name: 'actions', orderable: false, searchable: false }
         ]
     });
 

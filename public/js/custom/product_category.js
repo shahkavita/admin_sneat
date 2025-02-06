@@ -1,3 +1,27 @@
+/*function productlist() {
+    $('#categoryTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '/admin/product/category/list', // This URL should return data in JSON format
+            method: 'POST',
+            data: {
+                _token: $("[name='_token']").val(),
+            },
+            dataSrc: function(json) {
+                console.log(json); // Check the structure of the returned JSON
+                return json.data; // Ensure that 'data' is the correct property
+            }
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'status', name: 'status' },
+            { data: 'action', name: 'action' },
+        ]
+    });
+
+}*/
 $(document).ready(function() {
     $.ajaxSetup({
         headers: {
@@ -7,16 +31,34 @@ $(document).ready(function() {
     $('#categoryTable').DataTable({
         processing: true,
         serverSide: true,
-        "bDestroy": true,
-        ajax: "/list",
+        ajax: {
+            url: '/admin/product/category/list', // This URL should return data in JSON format
+            method: 'POST',
+            data: {
+                _token: $("[name='_token']").val(),
+            },
+            dataSrc: function(json) {
+                console.log(json); // Check the structure of the returned JSON
+                return json.data; // Ensure that 'data' is the correct property
+            }
+        },
+        order: [
+            [0, 'desc']
+        ],
         columns: [
-            { data: 'id' },
-            { data: 'name' },
-            { data: 'action', orderable: false, searchable: false }
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'status', name: 'status' },
+            { data: 'action', name: 'action' },
         ]
     });
-
-    // loaddata();
+    $('#exampleModal').on('hidden.bs.modal', function() {
+        $('#productform')[0].reset(); // Reset the form when modal is closed
+        $('#productform').find('input[type="hidden"]').val(''); // Clear hidden inputs
+        $('#exampleModalLabel').text('Add Category');
+        $('#categorysave').val('Submit')
+    });
+    // productlist();
     $('#categorysave').on('click', function(e) {
         const id = $('#hid').val();
         $('.text-danger').text('');
@@ -34,15 +76,17 @@ $(document).ready(function() {
             processData: false,
             data: FormDataPass,
             success: function(response) {
-                loaddata();
+
                 Swal.fire({
                     title: "Success!",
                     text: response.message,
                     icon: "success",
                     backdrop: true
                 });
+
                 $('#exampleModal').modal('hide');
                 $('#productform')[0].reset();
+                $('#categoryTable').DataTable().ajax.reload();
                 $('#exampleModalLabel').text('Add Category');
                 $('#categorysave').val('Submit');
                 $('#hid').val("");
@@ -60,10 +104,6 @@ $(document).ready(function() {
         });
     });
 });
-
-function loaddata() {
-
-}
 
 function editcategory(id) {
     console.log(id);
@@ -99,14 +139,15 @@ function deletecategory(id) {
                 url: 'category/' + id,
                 method: 'DELETE',
                 success: function(response) {
-                    loaddata();
                     Swal.fire({
                         title: "Success!",
                         text: response.message,
                         icon: "success",
                         backdrop: true
                     });
+                    $('#categoryTable').DataTable().ajax.reload();
                 }
+
             });
         }
     });

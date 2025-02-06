@@ -73,12 +73,16 @@ class authcontroller extends Controller
         if(Auth::attempt($credentials)) {
             // Authentication passed
            // $request->session()->regenerate();
-           return response()->json(['success' => 'Login successful', 'redirect_url' => route('dashboard')]);
+           return 
+           response()->json([
+           'success' => 'Login successful', 
+           'redirect_url' => route('dashboard')]);
         }
         else {
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid credentials.',
+                'message' => 'Email and Password does not match.',
+                'redirect_url' => route('login'),
             ], 401); // 401 Unauthorized if login fails
         }
        

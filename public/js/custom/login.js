@@ -69,7 +69,8 @@ $(document).ready(function() {
 
         // Add CSRF token to FormData manually (optional since it's in the AJAX setup)
         formdata.append('_token', $('meta[name="csrf-token"]').attr('content'));
-
+        $('#email-error').text("").hide();
+        $('#password-error').text("").hide();
         $.ajax({
             url: "/login",
             type: 'POST',
@@ -78,7 +79,6 @@ $(document).ready(function() {
             contentType: false,
             success: function(response) {
                 console.log("Login response: ", response);
-
                 if (response.success) {
                     Swal.fire({
                         title: 'Login Successful!',
@@ -92,21 +92,31 @@ $(document).ready(function() {
                             window.location.href = response.redirect_url;
                         }
                     });
-                } else {
-                    alert("Invalid login credentials. Please try again.");
                 }
             },
             error: function(xhr) {
-                var errors = xhr.responseJSON.errors;
-
-                // Display errors inside the span tags
-
-                if (errors.email) {
-                    $('#email-error').text(errors.email[0]);
+                if (xhr.status === 401) {
+                    Swal.fire({
+                        title: 'Invalid credentials',
+                        text: xhr.responseJSON.message,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 3000 // Message will show for 3 seconds
+                    }); // after 3 seconds
+                    $('#loginform')[0].reset();
+                } else if (xhr.status === 422) {
+                    var errors = xhr.responseJSON.errors;
+                    // Display errors inside the span tags
+                    if (errors.email) {
+                        $('#email-error').text(errors.email[0]).show();
+                    }
+                    if (errors.password) {
+                        $('#password-error').text(errors.password[0]).show();
+                    }
+                } else {
+                    alert('Something went wrong.Please try again!!')
                 }
-                if (errors.password) {
-                    $('#password-error').text(errors.password[0]);
-                }
+
             }
         });
     });

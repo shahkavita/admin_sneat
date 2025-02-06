@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\employee;
-
+use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 class employeeController extends Controller
 {
@@ -10,6 +10,29 @@ class employeeController extends Controller
     public function index()
     {
         return view ('admin.Employee.index');      
+    }
+    public function list(Request $request)
+    {
+       if ($request->ajax()) {
+            $data = employee::get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('skills', function ($user) {
+                    if (!empty($user->skills)) {
+                        $skillsArray = is_array($user->skills) ? $user->skills : explode(',', $user->skills);
+                        return implode('<br>', $skillsArray); // Display each skill on a new line
+                    }
+                    return '-';
+                })
+                ->addColumn('action', function ($row) {
+                return '<button class="edit btn btn-primary btn-sm"  onclick="viewemployee('.$row->id.')"><i class="fas fa-eye"></i></button>
+                        <button class="edit btn btn-info btn-sm"  onclick="editemployee('.$row->id.')"><i class="fas fa-edit"></i></button>
+                        <button class="delete btn btn-danger btn-sm" onclick="deleteemployee('.$row->id.')"><i class="fa fa-trash" aria-hidden="true"></i>
+            </button>';
+                })
+                ->rawColumns(['skills','action'])
+                ->make(true);
+            }
     }
     public function getdata()
     {

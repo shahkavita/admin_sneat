@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button"  id="empform" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ <button type="button"  id="empform" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     New Employee
   </button>
   <!-- Modal -->
@@ -23,7 +23,7 @@
               <input type="text" class="form-control" id="email" name="email">
               <span class="text-danger error-email"></span>
             </div>
-  
+
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Gender</label>
               <input type="radio"  name="gender" id="male" value="Male">
@@ -47,13 +47,13 @@
               <label for="recipient-name" class="col-form-label">Skills</label><br>
               <input class="form-check-input" type="checkbox" id="communication" value="Communication" name="skills[]">
               <label class="col-form-label" for="inlineCheckbox1">Communication</label>
-   
+
               <input class="form-check-input" type="checkbox" id="team work" value="Team Work" name="skills[]">
               <label class="col-form-label" for="inlineCheckbox1">Team Work</label>
-  
+
               <input class="form-check-input" type="checkbox" id="Leadership" value="Leadership" name="skills[]">
               <label class="col-form-label" for="inlineCheckbox1">Leadership</label>
-   
+
               <input class="form-check-input" type="checkbox" id="time management" value="Time Management" name="skills[]">
               <label class="col-form-label" for="inlineCheckbox1">Time Management</label><br>
               <span class="text-danger error-skills"></span>
@@ -81,7 +81,7 @@
             <td><strong>Code</strong></td>
             <td><span id="employeeCode"></span></td>
           </tr>
-          
+
           <tr>
             <td><strong>Name</strong></td>
             <td><span id="employeeName"></span></td>

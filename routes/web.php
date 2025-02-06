@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\support\Facades\DB;
 
 use App\Http\Controllers\authcontroller;
+use App\Http\Controllers\productController;
 use App\Http\Controllers\employeeController;
 use App\Http\Controllers\productcategoryController;
 
@@ -29,25 +30,29 @@ Route::post('/updatepassword', [authcontroller::class, 'submitResetPasswordForm'
 
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-        Route::get('/', [authcontroller::class, 'index'])->name('dashboard');
-        Route::get('/employee',[employeeController::class,'index'])->name('employee.index');
-        Route::post('/employee', [employeeController::class, 'savedata'])->name('employee.save');
-        Route::get('/employee/index', [employeeController::class,'getdata'])->name('admin.emplist');
-        Route::get('/employee/{id}', [employeeController::class,'viewdata'])->name('admin.singleemp');
-        Route::delete('/employee/{id}', [employeeController::class,'deletedata'])->name('delete');
-        Route::get('/employee/{id}', [employeeController::class,'data'])->name('edit');
+    Route::get('/', [authcontroller::class, 'index'])->name('dashboard');
+    Route::get('/employee', [employeeController::class, 'index'])->name('employee.index');
+    Route::post('/employee', [employeeController::class, 'savedata'])->name('employee.save');
+    Route::post('/employee/list', [employeeController::class,'list'])->name('admin.employee.list');
+    Route::get('/employee/index', [employeeController::class, 'getdata'])->name('admin.emplist');
+    Route::get('/employee/{id}', [employeeController::class, 'viewdata'])->name('admin.singleemp');
+    Route::delete('/employee/{id}', [employeeController::class, 'deletedata'])->name('delete');
+    Route::get('/employee/{id}', [employeeController::class, 'data'])->name('edit');
 
-        Route::get('/product', [productcategoryController::class,'index'])->name('product.index');
-        Route::get('/product/category',[productcategoryController::class,'index'])->name('product.category');
-        Route::get('/list',[productcategoryController::class,'getlist'])->name('product.list');
-        Route::get('/product/category/index', [productcategoryController::class,'getdata'])->name('admin.categorylist');
-        Route::delete('/product/category/{id}', [productcategoryController::class,'deletedata'])->name('admin.delete');
-        Route::post('/product/category', [productcategoryController::class, 'savedata'])->name('category.save');
-        Route::get('/product/category/{id}', [productcategoryController::class,'editdata'])->name('admin.edit');       
+    Route::get('/product', [productcategoryController::class, 'index'])->name('admin.product.index');
+    Route::get('/product/category', [productcategoryController::class, 'index'])->name('admin.product.category');
+    Route::post('/product/category/list', [productcategoryController::class, 'list'])->name('admin.product.list');
+    Route::get('/product/category/index', [productcategoryController::class, 'getdata'])->name('admin.categorylist');
+    Route::delete('/product/category/{id}', [productcategoryController::class, 'deletedata'])->name('admin.delete');
+    Route::post('/product/category', [productcategoryController::class, 'savedata'])->name('category.save');
+    Route::get('/product/category/{id}', [productcategoryController::class, 'editdata'])->name('admin.edit');
+
+    Route::get('/productdetails', [productController::class, 'index'])->name('product');
+    Route::POST('/product/list', [productController::class, 'list'])->name('product.list');
+    Route::POST('/product/addproduct', [productController::class, 'savedata'])->name('product.add');
+    Route::delete('/products/{id}', [productController::class, 'deletedata'])->name('products.destroy');
+    Route::get('/product/editproduct/{id}', [productController::class, 'getdata'])->name('products.getdata');
+  
 });
-
-Route::get('admin/product/demo',[demoController::class,'get'])->name('demo.get');
+Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');
 Route::get('admin/product/demo/index', [demoController::class, 'index'])->name('demo.index');
-
-
-

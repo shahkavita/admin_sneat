@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*function productlist() {
     $('#categoryTable').DataTable({
         processing: true,
@@ -23,14 +24,22 @@
 
 }*/
 $(document).ready(function() {
+=======
+var jq = jQuery.noConflict();
+jq(document).ready(function() {
+    console.log($.fn.jquery);
+    console.log(typeof $.fn.DataTable);
+>>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#categoryTable').DataTable({
+
+    jq('#categoryTable').DataTable({
         processing: true,
         serverSide: true,
+<<<<<<< HEAD
         ajax: {
             url: '/admin/product/category/list', // This URL should return data in JSON format
             method: 'POST',
@@ -45,11 +54,19 @@ $(document).ready(function() {
         order: [
             [0, 'desc']
         ],
+=======
+        ajax: "{{ route('category.list') }}", // Ensure this route exists!
+        //ajax: "{{ route('demo.index') }}",
+>>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'status', name: 'status' },
+<<<<<<< HEAD
             { data: 'action', name: 'action' },
+=======
+            { data: 'actions', name: 'actions', orderable: false, searchable: false }
+>>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
         ]
     });
     $('#exampleModal').on('hidden.bs.modal', function() {

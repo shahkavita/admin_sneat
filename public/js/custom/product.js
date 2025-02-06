@@ -146,7 +146,7 @@ function editproduct(id) {
         url: 'product/editproduct/' + id,
         method: 'GET',
         success: function(response) {
-            initializeCKEditor();
+            // initializeCKEditor();
             $('#exampleModal').modal('show');
             $('#productform')[0].reset();
             $('#exampleModalLabel').text('Update Category');
@@ -160,13 +160,13 @@ function editproduct(id) {
                 $('#imagePreview').attr('src', '/storage/' + response.p_image).show();
             }
             $('#productsave').val('Update');
-            if (CKEDITOR.instances['description']) {
+            /*if (CKEDITOR.instances['description']) {
                 CKEDITOR.instances['description'].setData(response.p_des);
             } else {
                 // Initialize CKEditor if not already initialized
                 CKEDITOR.replace('description');
                 CKEDITOR.instances['description'].setData(response.p_des);
-            }
+            }*/
 
         }
     })

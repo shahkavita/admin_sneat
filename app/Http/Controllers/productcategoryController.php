@@ -11,7 +11,8 @@ class productcategoryController extends Controller
     //
     public function index()
     {
-        return view('admin.Product.index');
+       // return view('admin.Product.democategory');
+       return view('admin.Product.index');
     }
     public function list(Request $request)
     {
@@ -37,7 +38,7 @@ class productcategoryController extends Controller
                 })
                 ->rawColumns(['status','action'])
                 ->make(true);
-            }
+        }
     }
 
     public function getdata()

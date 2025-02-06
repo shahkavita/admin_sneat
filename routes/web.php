@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\support\Facades\DB;
 
+use App\Http\Controllers\productController;
 use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\employeeController;
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::delete('/employee/{id}', [employeeController::class, 'deletedata'])->name('delete');
     Route::get('/employee/{id}', [employeeController::class, 'data'])->name('edit');
 
+<<<<<<< HEAD
     Route::get('/product', [productcategoryController::class, 'index'])->name('admin.product.index');
     Route::get('/product/category', [productcategoryController::class, 'index'])->name('admin.product.category');
     Route::post('/product/category/list', [productcategoryController::class, 'list'])->name('admin.product.list');
@@ -55,4 +57,17 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
   
 });
 Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');
+=======
+        Route::get('/product', [productcategoryController::class,'index'])->name('product.index');
+        Route::get('/product/category',[productcategoryController::class,'index'])->name('product.category');
+        Route::get('/categorylist',[productcategoryController::class,'getlist'])->name('category.list');
+        
+        Route::get('/product/category/index', [productcategoryController::class,'getdata'])->name('admin.categorylist');
+        Route::delete('/product/category/{id}', [productcategoryController::class,'deletedata'])->name('admin.delete');
+        Route::post('/product/category', [productcategoryController::class, 'savedata'])->name('category.save');
+        Route::get('/product/category/{id}', [productcategoryController::class,'editdata'])->name('admin.edit');
+        Route::get('/productlist',[productController::class,'index'])->name('productlist.index');
+});
+Route::get('admin/product/demo',[demoController::class,'get'])->name('demo.get');
+>>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
 Route::get('admin/product/demo/index', [demoController::class, 'index'])->name('demo.index');

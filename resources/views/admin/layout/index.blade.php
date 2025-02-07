@@ -140,11 +140,9 @@
 
             });
         </script>
-        {{-- ckeditor 4 --}}
-        {{-- <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
-        {{--<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>--}}
-        
-        <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+      {{-- ckeditor 5 --}}
+      <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+        {{--<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>--}}
 
         <script src="{{ asset('assets/admin/theme/cdnFiles/validate.min.js') }}"></script>
         <script src="{{ asset('assets/admin/theme/cdnFiles/additional-methods.min.js') }}"></script>
@@ -155,7 +153,7 @@
         {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/theme/vendor/libs/dataTables/jquery.dataTables.min.css') }}" />
         <script src="{{ asset('assets/admin/theme/vendor/libs/dataTables/jquery.dataTables.min.js') }}"></script> --}}
 
-      {{--<script src="{{ asset('assets/admin/theme/cdnFiles/ckeditor.js') }}"></script>--}}
+     {{-- <script src="{{ asset('assets/admin/theme/cdnFiles/ckeditor.js') }}"></script>--}}
 
         <link rel="stylesheet" href="{{ asset('assets/admin/theme/cdnFiles/toastr.css') }}" />
 

@@ -1,38 +1,10 @@
-let editorInstance;
-
-function initializeCKEditor() {
-    if (editorInstance) {
-        editorInstance.destroy().then(() => {
-            createCKEditor();
-        });
-    } else {
-        createCKEditor();
-    }
-}
-
-function createCKEditor() {
-    ClassicEditor
-        .create(document.querySelector('#description'))
-        .then(editor => {
-            editorInstance = editor;
-            editor.editing.view.change(writer => {
-                writer.setStyle('min-height', '120px', editor.editing.view.document.getRoot());
-                writer.setStyle('max-height', '200px', editor.editing.view.document.getRoot());
-            });
-        })
-        .catch(error => {
-            console.error('CKEditor initialization error:', error);
-        });
-}
-
 $(document).ready(function() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    initializeCKEditor();
-
+    CKEDITOR.replace('description');
     $('#image').change(function(event) {
         let reader = new FileReader();
         reader.onload = function(e) {
@@ -40,11 +12,6 @@ $(document).ready(function() {
         }
         reader.readAsDataURL(this.files[0]);
     });
-
-
-    // Reinitialize CKEditor when modal opens
-
-
     $('#productTable').DataTable({
         processing: true,
         serverSide: true,
@@ -74,12 +41,13 @@ $(document).ready(function() {
         ]
     });
     $('#exampleModal').on('hidden.bs.modal', function() {
-        initializeCKEditor();
+
         $('#imagePreview').hide().attr('src', '');
         $('#image').val('');
         $('#productform')[0].reset(); // Reset the form when modal is closed
         $('#productform').find('input[type="hidden"]').val(''); // Clear hidden inputs
         $('#exampleModalLabel').text('Add Category');
+        CKEDITOR.instances.description.setData('');
         $('#categorysave').val('Submit')
     });
 
@@ -90,10 +58,7 @@ $(document).ready(function() {
         console.log(id);
         let formname = document.getElementById('productform');
         let FormDataPass = new FormData(formname);
-        if (editorInstance) {
-            FormDataPass.append('description', editorInstance.getData());
-        }
-
+        FormDataPass.append('description', CKEDITOR.instances.description.getData());
         FormDataPass.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
         console.log("FormDataPass", FormDataPass);
@@ -159,14 +124,8 @@ function editproduct(id) {
             if (response.p_image) {
                 $('#imagePreview').attr('src', '/storage/' + response.p_image).show();
             }
+            CKEDITOR.instances.description.setData(response.p_des);
             $('#productsave').val('Update');
-            /*if (CKEDITOR.instances['description']) {
-                CKEDITOR.instances['description'].setData(response.p_des);
-            } else {
-                // Initialize CKEditor if not already initialized
-                CKEDITOR.replace('description');
-                CKEDITOR.instances['description'].setData(response.p_des);
-            }*/
 
         }
     })

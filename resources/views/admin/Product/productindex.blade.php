@@ -37,8 +37,4 @@
 @endsection
 @section('admin.layout.footer')
     <script src="{{ asset('js/custom/product.js') }}"></script>
-    <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('description');
-</script>
-@endsection
+ @endsection

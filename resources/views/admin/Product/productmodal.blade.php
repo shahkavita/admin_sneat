@@ -3,8 +3,8 @@
     New Product
   </button>
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
@@ -41,19 +41,17 @@
 
                 <div class="mb-3">
                   <label for="status" class="col-form-label">Status</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="one" value="1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Active
-                    </label>
+                </div>
+                <div class="mb-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="1" value="1" checked>
+                    <label class="form-check-label" for="inlineRadio1">Active</label>
                   </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="zero" value="0">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Inactive
-                    </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="0" value="0">
+                    <label class="form-check-label" for="inlineRadio2">Inactive</label>
                   </div>
-                    
+                  
                   <span class="text-danger error-status"></span>
                 </div>
 
@@ -64,6 +62,11 @@
               <label for="recipient-name" class="col-form-label">Image</label>
               <input type="file" class="form-control" name="image" id="image" accept="image/*"/>
               <img id="imagePreview" src="" alt="Image Preview" style="max-width: 150px; display: none; margin-top: 10px;">
+              <input type="text" name="oldimage" id="oldimage" readonly/>
+              
+              <button class="btn-danger"
+               type="button" id="cancel-image" style="display: none"><i class="fa fa-times" aria-hidden="true"></i>
+              </button>
               <span class="text-danger error-image"></span>
             </div>
                 
@@ -72,10 +75,7 @@
                   <textarea id="description" name="description" class="form-control">
                   </textarea>
                    <span class="text-danger error-description"></span>
-                </div>
-
-               
-
+                </div>             
           </form>
         </div>
         <div class="modal-footer">

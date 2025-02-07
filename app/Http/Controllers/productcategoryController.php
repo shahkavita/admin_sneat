@@ -22,13 +22,14 @@ class productcategoryController extends Controller
                 ->addIndexColumn()
                 ->addColumn('status', function($row){
                     $statusClass = $row->status == 'active' ? 'btn-success' : 'btn-danger';
-                   if($row->status == 0)
+                 //   return `<span class="status-label" style="color:white; padding:5px; background-color:${statusColor}; border-radius:5px;">${data}</span>`;
+                    if($row->status == 0)
                    {
-                    return "<button class='btn btn-dark btn-sm'>Inactive</button>";
+                    return "<span class='badge bg-label-danger me-1'>InActive</span>";
                    } 
                    else
                    {
-                    return "<button class='btn btn-primary btn-sm'>Active</button>";
+                    return "<span class='badge bg-label-primary me-1'>Active</span>";
                    }
                 })
                 ->addColumn('action', function ($row) {

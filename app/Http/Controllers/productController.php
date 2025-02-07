@@ -5,7 +5,7 @@ use App\Models\product_category;
 use App\Models\product;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class productController extends Controller
 {
     //
@@ -35,14 +35,14 @@ class productController extends Controller
                       
                 ->addColumn('p_status', function($row){
                     $statusClass = $row->p_status == 'active' ? 'btn-success' : 'btn-danger';
-                   if($row->p_status == 0)
-                   {
-                    return "<button class='btn btn-dark btn-sm'>Inactive</button>";
-                   } 
-                   else
-                   {
-                    return "<button class='btn btn-primary btn-sm'>Active</button>";
-                   }
+                    if($row->p_status == 0)
+                    {
+                     return "<span class='badge bg-label-danger me-1'>InActive</span>";
+                    } 
+                    else
+                    {
+                     return "<span class='badge bg-label-primary me-1'>Active</span>";
+                    }
                 })
                 ->addColumn('action', function ($row) {
                 return '<button class="edit btn btn-info btn-sm"  onclick="editproduct('.$row->p_id.')"><i class="fas fa-edit"></i></button>
@@ -61,6 +61,24 @@ class productController extends Controller
       
             if($request['hid']!="")
             {
+                $request->validate([
+                    'name' => 'required',
+                    'price' => 'required',
+                    'description' => 'required',
+                   // 'image' => 'required',
+                    'category' => 'required',
+                    'status' => 'required',
+                    // Ensure skills is an array
+                ], [
+                    'p_name.required' => 'The Name field is required.',
+                    'p_price.required' => 'The Price field is required.',
+                    'p_des.required' => 'The Description field is required.',
+                    //'p_image.required' => 'The Image field is required.',
+                    'category_id.required' => 'The Category field is required.',
+                    'p_status.required' => 'The status field is required.',
+    
+                ]);
+
                 $product=product::find($id);
                 if($request->hasFile('image'))
                 {
@@ -134,12 +152,16 @@ class productController extends Controller
     public function deletedata(string $id)
     {
         $product = product::find($id);
-        if ($product->p_image) {
-            $imagePath = public_path('images/produts' . $product->p_image);
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
+        if ($product->p_image)
+        {
+            $image_path=public_path("storage/").$product->p_image;
+            if(file_exists($image_path))
+            {
+                @unlink($image_path);
             }
+
         }
+        
         $product->delete();
         return response()->json(['success' => true, 'message' => 'Product deleted successfully!']);
     }

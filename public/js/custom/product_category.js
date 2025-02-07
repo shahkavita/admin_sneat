@@ -1,5 +1,9 @@
-<<<<<<< HEAD
-/*function productlist() {
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $('#categoryTable').DataTable({
         processing: true,
         serverSide: true,
@@ -21,61 +25,14 @@
             { data: 'action', name: 'action' },
         ]
     });
-
-}*/
-$(document).ready(function() {
-=======
-var jq = jQuery.noConflict();
-jq(document).ready(function() {
-    console.log($.fn.jquery);
-    console.log(typeof $.fn.DataTable);
->>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    jq('#categoryTable').DataTable({
-        processing: true,
-        serverSide: true,
-<<<<<<< HEAD
-        ajax: {
-            url: '/admin/product/category/list', // This URL should return data in JSON format
-            method: 'POST',
-            data: {
-                _token: $("[name='_token']").val(),
-            },
-            dataSrc: function(json) {
-                console.log(json); // Check the structure of the returned JSON
-                return json.data; // Ensure that 'data' is the correct property
-            }
-        },
-        order: [
-            [0, 'desc']
-        ],
-=======
-        ajax: "{{ route('category.list') }}", // Ensure this route exists!
-        //ajax: "{{ route('demo.index') }}",
->>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
-        columns: [
-            { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'status', name: 'status' },
-<<<<<<< HEAD
-            { data: 'action', name: 'action' },
-=======
-            { data: 'actions', name: 'actions', orderable: false, searchable: false }
->>>>>>> 13a2edb59aae3a20e687e587fe2c8f0623465526
-        ]
-    });
     $('#exampleModal').on('hidden.bs.modal', function() {
         $('#productform')[0].reset(); // Reset the form when modal is closed
         $('#productform').find('input[type="hidden"]').val(''); // Clear hidden inputs
         $('#exampleModalLabel').text('Add Category');
         $('#categorysave').val('Submit')
+        $('.text-danger').text('');
     });
-    // productlist();
+
     $('#categorysave').on('click', function(e) {
         const id = $('#hid').val();
         $('.text-danger').text('');
@@ -84,7 +41,6 @@ jq(document).ready(function() {
         let formname = document.getElementById('productform');
         let FormDataPass = new FormData(formname);
         FormDataPass.append('_token', $('meta[name="csrf-token"]').attr('content'));
-
         console.log("FormDataPass", FormDataPass);
         $.ajax({
             url: url,

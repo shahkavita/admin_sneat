@@ -8,10 +8,18 @@ $(document).ready(function() {
     $('#image').change(function(event) {
         let reader = new FileReader();
         reader.onload = function(e) {
+            oldImageUrl = $("#imagePreview").attr("src");
             $('#imagePreview').attr('src', e.target.result).show();
+            $("#cancel-image").show();
         }
         reader.readAsDataURL(this.files[0]);
     });
+    $("#cancel-image").click(function() {
+        $("#imagePreview").attr("src", oldImageUrl);
+        $("#image").val(""); // Clear file input
+        $(this).hide(); // Hide cancel button
+    });
+
     $('#productTable').DataTable({
         processing: true,
         serverSide: true,
@@ -48,7 +56,9 @@ $(document).ready(function() {
         $('#productform').find('input[type="hidden"]').val(''); // Clear hidden inputs
         $('#exampleModalLabel').text('Add Category');
         CKEDITOR.instances.description.setData('');
-        $('#categorysave').val('Submit')
+        $('.text-danger').text('');
+        $("#cancel-image").hide();
+        $('#productsave').val('Submit')
     });
 
     $('#productsave').on('click', function(e) {
@@ -96,11 +106,9 @@ $(document).ready(function() {
                     if (errors.category) $('.error-category').text(errors.category[0]);
                     if (errors.status) $('.error-status').text(errors.status[0]);
                 }
-                //$('.text-danger').text('');
             }
         });
     });
-
 });
 
 function editproduct(id) {
@@ -119,14 +127,15 @@ function editproduct(id) {
             $("#name").val(response.p_name);
             $("#price").val(response.p_price);
             $("#category").val(response.category_id);
+            // $("#cancel-image").show();
             $(`input[name="status"][value="${response.p_status}"]`).prop('checked', true);
-
             if (response.p_image) {
                 $('#imagePreview').attr('src', '/storage/' + response.p_image).show();
             }
+            $("#oldimage").val(response.p_image)
+
             CKEDITOR.instances.description.setData(response.p_des);
             $('#productsave').val('Update');
-
         }
     })
 }

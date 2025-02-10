@@ -9,6 +9,7 @@ use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\employeeController;
 use App\Http\Controllers\productcategoryController;
 
+use App\Http\Controllers\teamController;
 use App\Http\Controllers\demoController;
 
 Route::get('/', function () {
@@ -53,6 +54,13 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::POST('/product/addproduct', [productController::class, 'savedata'])->name('product.add');
     Route::delete('/products/{id}', [productController::class, 'deletedata'])->name('products.destroy');
     Route::get('/product/editproduct/{id}', [productController::class, 'getdata'])->name('products.getdata');
+  
+    Route::get('/team', [teamController::class, 'index'])->name('team.index');
+    Route::POST('/team/list', [teamController::class, 'list'])->name('team.list');
+    Route::POST('/team/add', [teamController::class, 'savedata'])->name('team.save');
+    Route::delete('/team/{id}', [teamController::class, 'deletedata'])->name('team.destroy');
+    Route::get('/team/edit/{id}', [teamController::class, 'getdata'])->name('team.getdata');
+  
   
 });
 Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');

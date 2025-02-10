@@ -58,5 +58,12 @@
 
             </ul>
         </li>
+
+        <li class="{{ $currentRouteName == 'team.index' ? 'menu-item active' : 'menu-item' }}">
+            <a href="{{ route('team.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Page 2">Team</div>
+            </a>
+        </li>
     </ul>
 </aside>

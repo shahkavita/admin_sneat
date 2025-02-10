@@ -62,7 +62,7 @@
               <label for="recipient-name" class="col-form-label">Image</label>
               <input type="file" class="form-control" name="image" id="image" accept="image/*"/>
               <img id="imagePreview" src="" alt="Image Preview" style="max-width: 150px; display: none; margin-top: 10px;">
-              <input type="text" name="oldimage" id="oldimage" readonly/>
+              <input type="text" name="oldimage" id="oldimage" readonly hidden/>
               
               <button class="btn-danger"
                type="button" id="cancel-image" style="display: none"><i class="fa fa-times" aria-hidden="true"></i>

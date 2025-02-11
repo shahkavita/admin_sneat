@@ -43,6 +43,7 @@ class EmployeeMail extends Mailable
     {
         return new Content(
             view: 'Mail.employee_email',
+            with: ['messageContent' => $this->messageContent]
         );
     }
 

@@ -19,8 +19,8 @@ class emailEmployeeController extends Controller
        
        // return $employee;
        $request->validate([
-            'subject'=>'required',
-            'message'=>'required'
+            'subject'=>'required|string',
+            'message'=>'required|string'
        ]);
        $employee=employee::where('status',1)->get();
        
@@ -33,6 +33,6 @@ class emailEmployeeController extends Controller
             'message'=>$request->message,
             'subject'=>$request->subject,
         ]);
-        return response()->json(['success' => true, 'message' => 'Email delivered to Employees successfully!']);
+        return response()->json(['success' => true, 'message' => 'Emails send successfully!']);
     }
 }

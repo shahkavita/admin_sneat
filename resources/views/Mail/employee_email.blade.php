@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Email Notification</title>
+    <title>{{ $subject }}</title>
 </head>
 <body>
-    <p>{{ $messageContent }}</p>
+    <p>{!! $messageContent !!}</p>
 </body>
 </html>

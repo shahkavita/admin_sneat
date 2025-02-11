@@ -29,6 +29,7 @@ $(document).ready(function() {
             { data: 'gender', name: 'gender' },
             { data: 'department', name: 'department' },
             { data: 'skills', name: 'skills' },
+            { data: 'status', name: 'status' },
             { data: 'action', name: 'action' },
         ]
     });
@@ -77,6 +78,7 @@ $(document).ready(function() {
                     if (errors.gender) $('.error-gender').text(errors.gender[0]);
                     if (errors.department) $('.error-department').text(errors.department[0]);
                     if (errors.skills) $('.error-skills').text(errors.skills[0]);
+                    if (errors.status) $('.error-status').text(errors.status[0]);
                 }
             }
         });
@@ -98,6 +100,7 @@ function editemployee(id) {
             $("#email").val(response.email);
             $(`input[name="gender"][value="${response.gender}"]`).prop('checked', true);
             $("#edepartment").val(response.department);
+            $(`input[name="status"][value="${response.status}"]`).prop('checked', true);
 
             const skills = response.skills.split(',')
             $('input[type="checkbox"]').each(function() {
@@ -108,7 +111,6 @@ function editemployee(id) {
                 }
             });
             $('#empsave').val('Update');
-
         }
     })
 }
@@ -154,6 +156,11 @@ function viewemployee(id) {
             $("#employeeEmail").text(response.email);
             $("#employeeGender").text(response.gender);
             $("#employeeDepartment").text(response.department);
+            if (response.status == 1) {
+                $("#employeeStatus").text("Active");
+            } else {
+                $("#employeeStatus").text('Inactive');
+            }
             $("#employeeSkills").text(response.skills);
         }
     })

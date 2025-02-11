@@ -24,13 +24,23 @@ class employeeController extends Controller
                     }
                     return '-';
                 })
+                ->addColumn('status', function($row){
+                if($row->status == 0)
+                   {
+                    return "<span class='badge bg-label-danger me-1'>InActive</span>";
+                   } 
+                   else
+                   {
+                    return "<span class='badge bg-label-primary me-1'>Active</span>";
+                   }
+                })
                 ->addColumn('action', function ($row) {
                 return '<button class="edit btn btn-primary btn-sm"  onclick="viewemployee('.$row->id.')"><i class="fas fa-eye"></i></button>
                         <button class="edit btn btn-info btn-sm"  onclick="editemployee('.$row->id.')"><i class="fas fa-edit"></i></button>
                         <button class="delete btn btn-danger btn-sm" onclick="deleteemployee('.$row->id.')"><i class="fa fa-trash" aria-hidden="true"></i>
             </button>';
                 })
-                ->rawColumns(['skills','action'])
+                ->rawColumns(['skills','status','action'])
                 ->make(true);
             }
     }
@@ -66,6 +76,7 @@ class employeeController extends Controller
                     "name" => isset($post['name']) ? $post['name'] : "",
                     "email" => isset($post['email']) ? $post['email'] : "",
                     "gender" => isset($post['gender']) ? $post['gender'] : "",
+                    "status" => isset($post['status']) ? $post['status'] : "",
                     "department" => isset($post['department']) ? $post['department'] : "",
                     "skills" => isset($post['skills']) ? implode(',', $post['skills']) : "",
                 ];
@@ -93,6 +104,7 @@ class employeeController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'gender' => $request->gender,
+                'status' => $request->status,
                 'department' => $request->department,
                 'skills' =>implode(",",$request->skills),
             ]);

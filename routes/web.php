@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\support\Facades\DB;
 
 use App\Http\Controllers\productController;
+use App\Http\Controllers\emailEmployeeController;
+
 use App\Http\Controllers\authcontroller;
 
 use App\Http\Controllers\employeeController;
@@ -61,7 +63,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::delete('/team/{id}', [teamController::class, 'deletedata'])->name('team.destroy');
     Route::get('/team/edit/{id}', [teamController::class, 'getdata'])->name('team.getdata');
   
-  
+    Route::get('/email',[emailEmployeeController::class,'index'])->name('email.employee.index');
+    Route::POST('/email/send',[emailEmployeeController::class,'senddata'])->name('email.send');
+
 });
 Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');
 Route::get('admin/product/demo/index', [demoController::class, 'index'])->name('demo.index');

@@ -22,8 +22,9 @@
                     <th style="width: 10px">Name</th>
                     <th style="width: 20px">Email</th>
                     <th style="width: 10px">Gender</th>
-                    <th style="width: 20px">Department</th>
+                    <th style="width: 10px">Department</th>
                     <th style="width: 10px">Skills</th>
+                    <th style="width: 10px">Status</th>
                     <th style="width: 20px">Actions</th>
 
                 </tr>

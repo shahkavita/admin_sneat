@@ -65,5 +65,12 @@
                 <div data-i18n="Page 2">Team</div>
             </a>
         </li>
+
+        <li class="{{ $currentRouteName == 'email.employee.index' ? 'menu-item active' : 'menu-item' }}">
+            <a href="{{ route('email.employee.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Page 2">Email To Employee</div>
+            </a>
+        </li>
     </ul>
 </aside>

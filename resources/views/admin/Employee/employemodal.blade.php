@@ -26,6 +26,7 @@
 
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Gender</label>
+              <br>
               <input type="radio"  name="gender" id="male" value="Male">
               <label for="recipient-name" class="col-form-label">Male</label>
               <input type="radio"  name="gender" id="female" value="Female">
@@ -33,6 +34,7 @@
               <br>
               <span class="text-danger error-gender"></span>
             </div>
+           
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Department</label>
               <select name="department" id="edepartment" class="form-control">
@@ -57,6 +59,16 @@
               <input class="form-check-input" type="checkbox" id="time management" value="Time Management" name="skills[]">
               <label class="col-form-label" for="inlineCheckbox1">Time Management</label><br>
               <span class="text-danger error-skills"></span>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">status</label>
+              <br>
+              <input type="radio"  name="status" id="one" value="1" checked>
+              <label for="recipient-name" class="col-form-label">Active</label>
+              <input type="radio"  name="status" id="0" value="0">
+              <label for="recipient-name" class="col-form-label">Inactive</label>
+              <br>
+              <span class="text-danger error-status"></span>
             </div>
           </form>
         </div>
@@ -93,6 +105,10 @@
           <tr>
             <td><strong>Department</strong></td>
             <td><span id="employeeDepartment"></span></td>
+          </tr>
+          <tr>
+            <td><strong>Status</strong></td>
+            <td><span id="employeeStatus"></span></td>
           </tr>
           <tr>
             <td><strong>Skills</strong></td>

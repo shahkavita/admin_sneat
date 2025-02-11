@@ -1,8 +1,8 @@
-<!-- Button trigger modal -->
+<!-- Button trigger modal 
 <button type="button"  id="empform" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     New Team
   </button>
-  <!-- Modal -->
+  Modal -->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">

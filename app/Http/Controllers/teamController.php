@@ -61,10 +61,9 @@ class teamController extends Controller
                 $request->validate([
                     'name' => 'required',
                     'role' => 'required',
-                    'facebook' => 'required|url',
-                    'twitter' => 'required|url',
-                    'skype' => 'required|url',   
-                    // Ensure skills is an array
+                    'facebook' => 'required|url|regex:/^https?:\/\/(www\.)?facebook\.com\/[A-Za-z0-9._-]+/',
+                    'twitter' => 'required|url|regex:/^https?:\/\/(www\.)?x\.com\/[A-Za-z0-9._-]+/',
+                    'skype' => 'required|url|regex:/^https?:\/\/secure\.skype\.com\/[A-Za-z0-9._-]+/',   
                 ]);
 
                 $team=team::find($id);
@@ -106,10 +105,10 @@ class teamController extends Controller
                     'name' => 'required',
                     'role' => 'required',
                     'image'=>'required',
-                    'facebook' => 'required|url',
-                    'twitter' => 'required|url',
-                    'skype' => 'required|url', 
-                // Ensure skills is an array
+                    'facebook' => 'required|url|regex:/^https?:\/\/(www\.)?facebook\.com\/[A-Za-z0-9._-]+/',
+                    'twitter' => 'required|url|regex:/^https?:\/\/(www\.)?x\.com\/[A-Za-z0-9._-]+/',
+                    'skype' => 'required|url|regex:/^https?:\/\/secure\.skype\.com\/[A-Za-z0-9._-]+/',
+               
             ]);
             $imagePath = null;
            

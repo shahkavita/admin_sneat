@@ -6,7 +6,7 @@
     Employee List
 @endsection
 @section('admin-content')
-    @include('admin.Employee.employemodal')
+    @include('admin.Employee.modal')
     <!-- Bootstrap Table with Header - Footer -->
      <!-- Content -->
      <div class="container-xxl flex-grow-1 container-p-y">

@@ -8,23 +8,17 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Attachment;
 
-class EmployeeMail extends Mailable
+class sendDynamicMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public array $mailData;
-    public ?string $attachmentPath;
-
-    public function __construct(array $mailData, ?string $attachmentPath=null)
+    public function __construct()
     {
         //
-        $this->mailData = $mailData;
-        $this->attachmentPath = $attachmentPath;
     }
 
     /**
@@ -33,8 +27,7 @@ class EmployeeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->mailData['subject'],
-           // message:$this->mailData['message'],
+            subject: 'Send Dynamic Mail',
         );
     }
 
@@ -44,11 +37,8 @@ class EmployeeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'Mail.employee_email',
-            with: ['mailData' => $this->mailData]
+            view: 'view.name',
         );
-   
-          //  with: ['messageContent' => $this->messageContent]
     }
 
     /**
@@ -58,8 +48,6 @@ class EmployeeMail extends Mailable
      */
     public function attachments(): array
     {
-        return !empty($this->attachmentPath)&&file_exists($this->attachmentPath)
-        ?[Attachment::fromPath($this->attachmentPath)]
-        :[];
+        return [];
     }
 }

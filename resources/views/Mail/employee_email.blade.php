@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ $subject }}</title>
+    <title>{{ $mailData['subject'] }}</title>
 </head>
 <body>
-    <p>{!! $messageContent !!}</p>
+    <h1>{{ $mailData['subject'] }}</h1>
+    <p>{!! $mailData['message'] !!}</p>
 </body>
 </html>

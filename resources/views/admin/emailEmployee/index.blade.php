@@ -22,7 +22,18 @@ Email To Employee
                   <input type="text" class="form-control" name="subject" id="subject"/>
                   <span class="text-danger error-subject"></span>
                 </div>
-    
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Attach File</label>
+                  
+                  <input type="file" class="form-control" name="attachment" id="attachement" 
+                     accept=".jpg,.png,.jpeg,.gif,.pdf,.doc,.docx,.xls,.xlsx"/>
+                     <span class="text-danger error-attachment"></span>
+                   <div id="preview" style="display: none;">
+                      <label for="recipient-name" class="col-form-label">Attachement Preview</label>
+                     <img id="previewImage" src="" style="height:60px; width:80px;display:none;"/>
+                     <iframe id="previewPDF" style="height:200px;width:200px;display:none;"></iframe>
+                </div> 
+               </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Message</label>
                     <textarea id="message" name="message" class="form-control">

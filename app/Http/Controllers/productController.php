@@ -12,7 +12,7 @@ class productController extends Controller
     public function index()
     {
         $category=product_category::where('status','1')->get();
-        return view('admin.Product.productindex',compact('category'));
+        return view('admin.Product.index',compact('category'));
     }
     public function list(Request $request)
     {

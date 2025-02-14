@@ -33,10 +33,13 @@ $(document).ready(function() {
                 let googleDocsViewerURL = `https://docs.google.com/gview?url=${encodeURIComponent(fileURL)}&embedded=true`;
                 $('#previewPDF').attr('src', googleDocsViewerURL).show();
                 $('#previewImage').hide();
+            } else if (fileType.includes('xls') || file.name.endsWith('xls') || file.name.endsWith('xlsx')) {
+                let googleDocsViewerURL = `https://docs.google.com/gview?url=${encodeURIComponent(fileURL)}&embedded=true`;
+                $('#previewPDF').attr('src', googleDocsViewerURL).show();
+                $('#previewImage').hide();
             } else {
                 $('#previewImage, #previewPDF').hide();
             }
-
             reader.readAsDataURL(file);
         }
     });

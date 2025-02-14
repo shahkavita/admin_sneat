@@ -5,14 +5,14 @@ use Illuminate\support\Facades\DB;
 
 use App\Http\Controllers\productController;
 use App\Http\Controllers\emailEmployeeController;
-
 use App\Http\Controllers\authcontroller;
-
 use App\Http\Controllers\employeeController;
 use App\Http\Controllers\productcategoryController;
-
 use App\Http\Controllers\teamController;
 use App\Http\Controllers\demoController;
+
+use App\Http\Controllers\settingController;
+use App\Http\Controllers\generalSettingsController;
 
 Route::get('/', function () {
     return view('admin.auth.login');
@@ -65,6 +65,12 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
   
     Route::get('/email',[emailEmployeeController::class,'index'])->name('email.employee.index');
     Route::POST('/email/send',[emailEmployeeController::class,'senddata'])->name('email.send');
+
+    Route::get('/settings/index',[settingController::class,'index'])->name('settings.index');
+   
+    Route::get('/settings/fetchsettings',[generalSettingsController::class,'fetchsettings'])->name('settings.fetch');
+    //Route::get('/settings/getSetting/{key}',[generalSettingsController::class,'getSetting'])->name('settings.get');
+    Route::post('/settings/general/updatesettings',[generalSettingsController::class,'updatesettings'])->name('settings.update');
 
 });
 Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');

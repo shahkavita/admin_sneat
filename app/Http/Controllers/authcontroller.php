@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Mail;
 class authcontroller extends Controller
 {
     //
+    public function showuser(Request $request)
+    {
+        return greetuser($request->name);
+    }
     public function login()
     {
         return view('admin.auth.login');

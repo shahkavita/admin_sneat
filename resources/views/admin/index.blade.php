@@ -7,6 +7,7 @@
 @endsection
 @section('content')
     <div class="row">
+      
         <!-- Top Products by -->
         <div class="col-12 col-lg-8 mb-4">
             <div class="card">

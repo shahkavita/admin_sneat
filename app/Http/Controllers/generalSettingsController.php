@@ -77,12 +77,5 @@ class generalSettingsController extends Controller
         }
         return response()->json(['success' => true, 'message' => 'General Settings Saved successfully']);
     }
-    public function getSetting($key) {
-        $setting = generalSettings::where('key', $key)->first();
-        if ($setting) {
-            return response()->json($setting);
-        }
-        return response()->json(['success' => false, 'message' => 'Setting not found!'], 404);
-    }
 
 }

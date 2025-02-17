@@ -98,12 +98,88 @@
 </div>
 
 <div id="smtp" class="d-none">
-  <form>
+  <form id="smtpform" name="smtpform" enctype="multipart/form-data">
+    @csrf
       <div class="mb-3">
-          <label class="form-label">Phone</label>
-          <input type="text" class="form-control" placeholder="Enter phone">
+          <label class="form-label">Mail engine</label>
       </div>
-      <button type="submit" class="btn btn-warning">Submit</button>
+        <div class="mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="mailengine" id="PHP" value="PHP Mailer">
+                <label class="form-check-label" for="inlineRadio1">PHP Mailer</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="mailengine" id="Codeigniter" value="Codeigniter">
+                <label class="form-check-label" for="inlineRadio2">Codeigniter</label>
+              </div>
+        </div>
+      <div class="mb-3">
+        <label class="form-label">Email Protocol</label>
+    </div>
+    <div class="mb-3">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="emailprotocol" id="Smtp" value="SMTP">
+            <label class="form-check-label" for="inlineRadio1">SMTP</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio"  name="emailprotocol" id="SendMail" value="SendMail">
+            <label class="form-check-label" for="inlineRadio2">SendMail</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio"  name="emailprotocol" id="Mailprotocol" value="Mail">
+            <label class="form-check-label" for="inlineRadio2">Mail</label>
+          </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email Encryption</label>
+       <select id="encryption" name="encryption" class="form-control">
+            <option value="None">None</option>
+            <option value="TLS">TLS</option>
+            <option value="SSL">SSL</option>
+       </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">SMTP Host</label>
+        <input type="text" class="form-control" name="host" id="host"placeholder="Enter SMTP Host">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">SMTP Port</label>
+        <input type="text" class="form-control" name="port" id="port" placeholder="Enter SMTP Port">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">SMTP Email</label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Enter SMTP Email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">SMTP Username</label>
+        <input type="text" class="form-control" name="username" id="username"placeholder="Enter SMTP Username">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">SMTP Password</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Enter SMTP Password">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email Charset</label>
+        <select name="charset" id="charset" class="form-control">
+            <option value="UTF-8" selected>UTF-8 (Recommended)</option>
+            <option value="ISO-8859-1">ISO-8859-1</option>
+            <option value="ISO-8859-15">ISO-8859-15</option>
+            <option value="US-ASCII">US-ASCII</option>
+        </select>    
+    </div>
+      <button type="submit" class="btn btn-primary" name="smtp" id="smtp">Submit</button>
+      <div class="mb-3">
+        <hr class="border-top"/>
+    </div>
+
+      <div class="mb-3">
+        <label class="form-label">Send Test Email</label>
+        <p>Send test email to make sure that your SMTP setting is set correctly</p>
+    </div>
+    <div class="input-group">
+        <input type="email" class="form-control" placeholder="Email address" id="sendemail" name="sendemail">
+        <button class="btn btn-primary" type="button" id="send">Send</button>
+    </div>
   </form>
 </div>
 <div id="socialmedia" class="d-none">

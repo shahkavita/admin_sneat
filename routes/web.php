@@ -69,7 +69,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/settings/index',[settingController::class,'index'])->name('settings.index');
    
     Route::get('/settings/fetchsettings',[generalSettingsController::class,'fetchsettings'])->name('settings.fetch');
-    //Route::get('/settings/getSetting/{key}',[generalSettingsController::class,'getSetting'])->name('settings.get');
     Route::post('/settings/general/updatesettings',[generalSettingsController::class,'updatesettings'])->name('settings.update');
 
 });

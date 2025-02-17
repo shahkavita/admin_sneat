@@ -69,7 +69,7 @@
     <div class="mb-3">
         <label class="form-label">Global Customers</label>
         <input type="number" class="form-control" placeholder="Enter name" name="settings[globalcustomer]" id="globalcustomer">
-        <span class="text-danger error-customer"></span>
+        <span class="text-danger error-globalcustomer"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Years of experience</label>

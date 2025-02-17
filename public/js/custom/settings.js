@@ -50,6 +50,7 @@ $(document).ready(function() {
         }
         $("#general").on('click', function(e) {
             e.preventDefault();
+
             let formname = document.getElementById('generalsetting');
             let FormDataPass = new FormData(formname);
             FormDataPass.append('_token', $('meta[name="csrf-token"]').attr('content'));
@@ -71,7 +72,6 @@ $(document).ready(function() {
                 },
                 error: function(xhr, status, error) {
                     // Debugging: Check error in console
-
                     if (xhr.status === 422) { // Laravel validation error
                         let errors = xhr.responseJSON.errors;
                         console.log(errors)

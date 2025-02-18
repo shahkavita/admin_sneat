@@ -9,6 +9,8 @@ use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\employeeController;
 use App\Http\Controllers\productcategoryController;
 use App\Http\Controllers\teamController;
+use App\Http\Controllers\smtpController;
+
 use App\Http\Controllers\demoController;
 
 use App\Http\Controllers\settingController;
@@ -71,6 +73,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/settings/fetchsettings',[generalSettingsController::class,'fetchsettings'])->name('settings.fetch');
     Route::post('/settings/general/updatesettings',[generalSettingsController::class,'updatesettings'])->name('settings.update');
 
+    Route::POST('/settings/smtp/updatesmtp',[smtpController::class,'updatesmtp'])->name('smtp.update');
+    Route::get('/settings/smtpsettings',[smtpController::class,'fetchsmtp'])->name('smtp.fetch');
 });
 Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');
 Route::get('admin/product/demo/index', [demoController::class, 'index'])->name('demo.index');

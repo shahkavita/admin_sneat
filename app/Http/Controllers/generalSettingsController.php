@@ -10,7 +10,11 @@ class generalSettingsController extends Controller
     public function fetchsettings()
     {
         $settings=generalSettings::all();
-        return response()->json($settings);
+        $country=getcountry();
+        return response()->json([
+            'settings'=>$settings,
+            'country'=>$country
+        ]);
     }
     public function updatesettings(Request $request)
     {
@@ -18,12 +22,12 @@ class generalSettingsController extends Controller
             'settings' => 'required|array',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,ico|max:1024',
-            'settings.companyname' => 'required|string',
-            'settings.city' => 'required|string',
-            'settings.state' => 'required|string',
-            'settings.country' => 'required|string',
-            'settings.zipcode' => 'required|integer|min:6',
-            'settings.phonenumber' => 'required|integer|min:10',
+            'settings.companyname' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'settings.city' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'settings.state' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'settings.country' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'settings.zipcode' => 'required|digits:6',
+            'settings.phonenumber' => 'required|digits:10',
             'settings.email' => 'required|email',
             'settings.project' => 'required|integer',
             'settings.globalcustomer' => 'required|integer',
@@ -37,29 +41,28 @@ class generalSettingsController extends Controller
             'favicon.mimes' => 'Only JPEG, PNG, JPG, and ICO formats are allowed.',
             'favicon.max' => 'The image must not be larger than 1MB.',  
             'settings.companyname.required' => 'Company name field is required.',
-            'settings.companyname.string' => 'Only String is allowed.',
+            'settings.companyname.regex' => 'Comapny name can not contain numbers.',
             'settings.city.required' => 'Logo field is required.',
-            'settings.city.string' => 'Only string is allowed',
+            'settings.city.regex' => 'City can not contain numbers.',
             'settings.state.required' => 'State field is required.',
-            'settings.state.string' => 'Only string is allowed.',
+            'settings.state.regex' => 'State can not contain numbers.',
             'settings.country.required' => 'Country field is required.',
-            'settings.country.string' => 'Only string is allowed.',
+            'settings.country.regex' => 'Country can not contain numbers.',
             'settings.zipcode.required' => 'Zip code field is required.',
-            'settings.zipcode.integer' => 'Only Digits are allowed.',
-            'settings.zipcode.min' => 'Zip code field must be at least 6.',
+            'settings.zipcode.digits' => 'Zip code must be exactly 6 digits.',
             'settings.phonenumber.required' => 'Phone number  field is required.',
-            'settings.phonenumber.integer' => 'Phone number  field must be an integer.',
-            'settings.phonenumber.min' => 'Phone number  field must be at least 10.',
+            'settings.phonenumber.digits' => 'Phone number must be exactly 10 digits',
+              
             'settings.email.required' => 'Email field is required.',
             'settings.email.email' => 'Email field must be a valid mail.',
             'settings.project.required' => 'Project field is required.',
-            'settings.project.integer' => 'Project field is required.',
+            'settings.project.integer' => 'Project field must be a valid number.',
             'settings.globalcustomer.required' => 'Global Customer field is required.',
-            'settings.globalcustomer.integer' => 'Global Customer field must be an integer.',
+            'settings.globalcustomer.integer' => 'Global Customer must be a valid number.',
             'settings.experience.required' => 'Experience field is required.',
-            'settings.experience.integer' => 'Experience field must be an integer.',
+            'settings.experience.integer' => 'Experience field must be a valid number.',
             'settings.client.required' => 'Client field is required.',
-            'settings.client.integer' => 'Client field must be an integer.',
+            'settings.client.integer' => 'Client field must be a valid number.',
         ]);
 
         foreach ($request->settings as $key => $value) {

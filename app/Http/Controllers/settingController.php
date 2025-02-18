@@ -9,7 +9,8 @@ class settingController extends Controller
     //
     public function index()
     {
-        return view('admin.settings.index');
+        $country=getcountry();
+        return view('admin.settings.index',compact('country'));
     }
    
 }

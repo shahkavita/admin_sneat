@@ -1,5 +1,5 @@
  <!-- Hidden Forms -->
- <div id="general" class="d-none">
+ <div id="general" class="d-none" style="display: block;">
   <form id="generalsetting" name="generalsetting" method="POST" enctype="multipart/form-data">
     @csrf  
     <div class="mb-3">
@@ -22,39 +22,48 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Company Name</label>
-        <input type="text" class="form-control" placeholder="Enter company name" name="settings[companyname]" id="companyname">
+        <input type="text" class="form-control" placeholder="Enter company name" name="settings[companyname]" id="companyname" 
+        value="{{ old('settings.companyname') }}">
         <span class="text-danger error-companyname"></span>
          
     </div>
     <div class="mb-3">
         <label class="form-label">City</label>
-        <input type="text" class="form-control" placeholder="Enter city" name="settings[city]" id="city">
+        <input type="text" class="form-control" placeholder="Enter city" name="settings[city]" id="city"
+        value="{{ old('settings.city') }}">
         <span class="text-danger error-city"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">State</label>
-        <input type="text" class="form-control" placeholder="Enter state" name="settings[state]" id="state">
+        <input type="text" class="form-control" value="{{ old('settings.state') }}"
+        placeholder="Enter state" name="settings[state]" id="state">
         <span class="text-danger error-state"></span>
  </div>
     <div class="mb-3">
         <label class="form-label">Country</label>
-        <input type="text" class="form-control" placeholder="Enter country" name="settings[country]" id="country">
-        <span class="text-danger error-country"></span>
+        <select name="settings[country]" id="country"class="form-control">
+          <option value="">Select Country
+        </option>
+      </select>
+      <span class="text-danger error-country"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Zip Code</label>
-        <input type="number" class="form-control" placeholder="Enter zip code" name="settings[zipcode]" id="zipcode">
+        <input type="number" class="form-control" value="{{ old('settings.zipcode') }}"
+         placeholder="Enter zip code" name="settings[zipcode]" id="zipcode">
         <span class="text-danger error-zipcode"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Phone Number</label>
-        <input type="number" class="form-control" placeholder="Enter phone number" name="settings[phonenumber]" id="phonenumber">
+        <input type="number" class="form-control" value="{{ old('settings.phonenumber') }}"
+        placeholder="Enter phone number" name="settings[phonenumber]" id="phonenumber">
         <span class="text-danger error-phonenumber"></span>
         <p>Use(,) to add multiple phone number</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Email Address</label>
-        <input type="email" class="form-control" placeholder="Enter email address" name="settings[email]" id="email">
+        <input type="email" class="form-control" value="{{ old('settings.email') }}"
+        placeholder="Enter email address" name="settings[email]" id="email">
         <span class="text-danger error-email"></span>
         <p>Use(,) to add multiple email address</p>
     </div>
@@ -63,22 +72,26 @@
    
     <div class="mb-3">
         <label class="form-label">Project Completed</label>
-        <input type="number" class="form-control" placeholder="Enter Project Completed" name="settings[project]" id="project">
+        <input type="number" class="form-control" value="{{ old('settings.project') }}"
+        placeholder="Enter Project Completed" name="settings[project]" id="project">
         <span class="text-danger error-project"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Global Customers</label>
-        <input type="number" class="form-control" placeholder="Enter name" name="settings[globalcustomer]" id="globalcustomer">
+        <input type="number" class="form-control" value="{{ old('settings.globalcustomer') }}"
+        placeholder="Enter name" name="settings[globalcustomer]" id="globalcustomer">
         <span class="text-danger error-globalcustomer"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Years of experience</label>
-        <input type="number" class="form-control" placeholder="Enter years of experience" name="settings[experience]" id="experience">
+        <input type="number" class="form-control" value="{{ old('settings.experience') }}"
+        placeholder="Enter years of experience" name="settings[experience]" id="experience">
         <span class="text-danger error-experience"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Countries Clients Served</label>
-        <input type="number" class="form-control" placeholder="Enter countries clients served" name="settings[client]" id='client'>
+        <input type="number" class="form-control" value="{{ old('settings.client') }}"
+        placeholder="Enter countries clients served" name="settings[client]" id='client'>
         <span class="text-danger error-client"></span>
     </div>
       <button type="submit" class="btn btn-primary" name="general" id="general">Submit</button>
@@ -98,7 +111,7 @@
 </div>
 
 <div id="smtp" class="d-none">
-  <form id="smtpform" name="smtpform" enctype="multipart/form-data">
+  <form id="smtpform" name="smtpform" method="POST" action="{{route('smtp.update')}}">
     @csrf
       <div class="mb-3">
           <label class="form-label">Mail engine</label>
@@ -107,14 +120,17 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="mailengine" id="PHP" value="PHP Mailer">
                 <label class="form-check-label" for="inlineRadio1">PHP Mailer</label>
+                <span class="text-danger error-client"></span>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="mailengine" id="Codeigniter" value="Codeigniter">
                 <label class="form-check-label" for="inlineRadio2">Codeigniter</label>
+                <span class="text-danger error-mailengine"></span>
               </div>
         </div>
       <div class="mb-3">
         <label class="form-label">Email Protocol</label>
+        <span class="text-danger error-emailprotocol"></span>
     </div>
     <div class="mb-3">
         <div class="form-check form-check-inline">
@@ -132,6 +148,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Email Encryption</label>
+        <span class="text-danger error-encryption"></span>
        <select id="encryption" name="encryption" class="form-control">
             <option value="None">None</option>
             <option value="TLS">TLS</option>
@@ -141,22 +158,27 @@
     <div class="mb-3">
         <label class="form-label">SMTP Host</label>
         <input type="text" class="form-control" name="host" id="host"placeholder="Enter SMTP Host">
-    </div>
+        <span class="text-danger error-host"></span>
+      </div>
     <div class="mb-3">
         <label class="form-label">SMTP Port</label>
         <input type="text" class="form-control" name="port" id="port" placeholder="Enter SMTP Port">
+        <span class="text-danger error-port"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">SMTP Email</label>
         <input type="email" class="form-control" name="email" id="email" placeholder="Enter SMTP Email">
-    </div>
+        <span class="text-danger error-emails"></span>
+      </div>
     <div class="mb-3">
         <label class="form-label">SMTP Username</label>
         <input type="text" class="form-control" name="username" id="username"placeholder="Enter SMTP Username">
+        <span class="text-danger error-username"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">SMTP Password</label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Enter SMTP Password">
+        <span class="text-danger error-password"></span>
     </div>
     <div class="mb-3">
         <label class="form-label">Email Charset</label>
@@ -165,7 +187,8 @@
             <option value="ISO-8859-1">ISO-8859-1</option>
             <option value="ISO-8859-15">ISO-8859-15</option>
             <option value="US-ASCII">US-ASCII</option>
-        </select>    
+        </select>   
+        <span class="text-danger error-charset"></span> 
     </div>
       <button type="submit" class="btn btn-primary" name="smtp" id="smtp">Submit</button>
       <div class="mb-3">

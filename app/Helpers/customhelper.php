@@ -27,6 +27,7 @@ use Illuminate\Support\Str;
         function setsmtpConfig()
         {
             $smtpsetting=getsmtp();
+           // dd($smtpsetting);
             Config::set('mail.mailer','smtp');
             Config::set('mail.host', $smtpsetting['host'] ?? env('MAIL_HOST'));
             Config::set('mail.port', $smtpsetting['port'] ?? env('MAIL_PORT'));

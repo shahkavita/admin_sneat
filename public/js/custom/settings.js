@@ -116,12 +116,6 @@ $(document).ready(function() {
                             });
                         });
 
-                        /*console.log(errors)
-                        $.each(errors, function(key, messages) {
-                            let fieldName = key.split('.').pop() // Convert 'settings.name' -> 'settings-name'
-                            $("." + "error-" + fieldName).text(messages.join('<br>')); // Show first error message
-                            // Show first error
-                        });*/
                     } else {
                         alert("An unexpected error occurred: " + xhr.responseText);
                     }
@@ -188,5 +182,41 @@ $(document).ready(function() {
                 $("#charset").val(data[8].value);
             });
         }
+        $("#sendemail").on('click', function(e) {
+            e.preventDefault();
+            console.log('send mail button');
+            let formname = document.getElementById('testmail');
+            let FormDataPass = new FormData(formname);
+            FormDataPass.append('_token', $('meta[name="csrf-token"]').attr('content'));
+            let url = '/admin/settings/smtp/test';
+            alert(url)
+            $.ajax({
+                URL: url,
+                method: 'POST',
+                contentType: false,
+                processData: false,
+                data: FormDataPass,
+                success: function(response) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: response.message,
+                        icon: "success",
+                        backdrop: true
+                    });
+                    $("#testemail").val('');
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON;
+                    console.log(errors);
+                    Swal.fire({
+                        title: "Error!",
+                        text: xhr.message,
+                        icon: "error",
+                        backdrop: true
+                    });
+                }
+
+            });
+        });
     });
 });

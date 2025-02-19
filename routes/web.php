@@ -75,6 +75,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::POST('/settings/smtp/updatesmtp',[smtpController::class,'updatesmtp'])->name('smtp.update');
     Route::get('/settings/smtpsettings',[smtpController::class,'fetchsmtp'])->name('smtp.fetch');
+    Route::POST('/settings/smtp/test',[smtpController::class,'testsmtp'])->name('smtp.test');
+
 });
 Route::get('admin/product/demo', [demoController::class, 'get'])->name('demo.get');
 Route::get('admin/product/demo/index', [demoController::class, 'index'])->name('demo.index');

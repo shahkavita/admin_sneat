@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\smtp;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class smtpController extends Controller
 {
     //
@@ -11,6 +11,25 @@ class smtpController extends Controller
     {
         $smtp=smtp::all();
         return $smtp;
+    }
+    public function testsmtp(Request $request)
+    {
+
+        $request->validate([
+            'sendemail'=>'required|email'
+        ]);
+        setsmtpConfig();
+        try {
+            // Send a test email
+            Mail::raw('This is a test email to verify SMTP settings.', function ($message) use ($request) {
+                $message->to($request->sendemail)
+                        ->subject('SMTP Test Email');
+            });
+            return response()->json(['message' => 'Test email sent successfully!'], 200);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to send test email. Error: ' . $e->getMessage()], 500);
+        }
     }
     public function updatesmtp(Request $request)
     {

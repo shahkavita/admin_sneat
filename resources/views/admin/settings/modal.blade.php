@@ -194,16 +194,18 @@
       <div class="mb-3">
         <hr class="border-top"/>
     </div>
-
+  </form>
+    <form id="testmail" name="testmail" method="POST" action="{{route('smtp.test')}}">
+      @csrf
       <div class="mb-3">
         <label class="form-label">Send Test Email</label>
         <p>Send test email to make sure that your SMTP setting is set correctly</p>
     </div>
     <div class="input-group">
         <input type="email" class="form-control" placeholder="Email address" id="sendemail" name="sendemail">
-        <button class="btn btn-primary" type="button" id="send">Send</button>
+        <button class="btn btn-primary" type="submit" id="sendemail">Send</button>
     </div>
-  </form>
+    </form>
 </div>
 <div id="socialmedia" class="d-none">
   <form>

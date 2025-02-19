@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('country_tbl', function (Blueprint $table) {
+        Schema::create('tbl_country', function (Blueprint $table) {
             $table->id();
             $table->string('name')->required();
             $table->string('code');
-            $table->timestamps();
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('country_tbl');
+        Schema::dropIfExists('tbl_country');
     }
 };

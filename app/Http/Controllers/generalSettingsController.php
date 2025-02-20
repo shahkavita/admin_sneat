@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\generalSettings;
 use Illuminate\Http\Request;
-
+use App\Models\city;
+use App\Models\state;
 class generalSettingsController extends Controller
 {
     //
@@ -11,10 +12,25 @@ class generalSettingsController extends Controller
     {
         $settings=generalSettings::all();
         $country=getcountry();
+        $state=state::get();
+        $city=city::get();
         return response()->json([
             'settings'=>$settings,
-            'country'=>$country
+            'country'=>$country,
+            'state'=>$state,
+            'city'=>$city
         ]);
+    }
+    public function getcity($state_id)
+    {
+        $city=getcityByState($state_id);
+        return response()->json($city);
+    }
+
+    public function getstate($country_id)
+    {
+        $state=getstateByCountry($country_id);
+        return response()->json($state);
     }
     public function updatesettings(Request $request)
     {
@@ -23,8 +39,8 @@ class generalSettingsController extends Controller
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,ico|max:1024',
             'settings.companyname' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'settings.city' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'settings.state' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'settings.city' => 'required',
+            'settings.state' => 'required',
             'settings.country' => 'required',
             'settings.zipcode' => 'required|digits:6',
             'settings.phonenumber' => 'required|digits:10',
@@ -43,15 +59,12 @@ class generalSettingsController extends Controller
             'settings.companyname.required' => 'Company name field is required.',
             'settings.companyname.regex' => 'Comapny name can not contain numbers.',
             'settings.city.required' => 'Logo field is required.',
-            'settings.city.regex' => 'City can not contain numbers.',
             'settings.state.required' => 'State field is required.',
-            'settings.state.regex' => 'State can not contain numbers.',
             'settings.country.required' => 'Country field is required.',
-             'settings.zipcode.required' => 'Zip code field is required.',
+            'settings.zipcode.required' => 'Zip code field is required.',
             'settings.zipcode.digits' => 'Zip code must be exactly 6 digits.',
             'settings.phonenumber.required' => 'Phone number  field is required.',
-            'settings.phonenumber.digits' => 'Phone number must be exactly 10 digits',
-              
+            'settings.phonenumber.digits' => 'Phone number must be exactly 10 digits',  
             'settings.email.required' => 'Email field is required.',
             'settings.email.email' => 'Email field must be a valid mail.',
             'settings.project.required' => 'Project field is required.',

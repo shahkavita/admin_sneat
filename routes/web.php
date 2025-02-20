@@ -71,6 +71,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/settings/index',[settingController::class,'index'])->name('settings.index');
    
     Route::get('/settings/fetchsettings',[generalSettingsController::class,'fetchsettings'])->name('settings.fetch');
+    Route::get('/settings/getstate/{country_id}',[generalSettingsController::class,'getstate'])->name('settings.state');
+    Route::get('/settings/getcity/{state_id}',[generalSettingsController::class,'getcity'])->name('settings.city');
     Route::post('/settings/general/updatesettings',[generalSettingsController::class,'updatesettings'])->name('settings.update');
 
     Route::POST('/settings/smtp/updatesmtp',[smtpController::class,'updatesmtp'])->name('smtp.update');

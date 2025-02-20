@@ -15,6 +15,20 @@ use Illuminate\Support\Str;
             return DB::table('tbl_country')->get();
         }
    } 
+   if(!function_exists('getstateByCountry'))
+   {
+        function getstateByCountry($country_id)
+        {
+            return DB::table('tbl_state')->where('country_id',$country_id)->pluck('id','name');
+        }
+   } 
+   if(!function_exists('getcityByState'))
+   {
+        function getcityByState($state_id)
+        {
+            return DB::table('tbl_city')->where('state_id',$state_id)->pluck('id','name');
+        }
+   } 
    if(!function_exists('getsmtp'))
    {
         function getsmtp()

@@ -16,12 +16,6 @@ $(document).ready(function() {
         var formId = $(this).data('form');
         $("#form-container").html($("#" + formId).html()); // Show the form content by ID
 
-        /*$(".list-group-item").removeClass("active");
-        var formId = $(this).data("form"); // Get the form ID
-        console.log(formId);
-        $(this).parent().addClass("active");
-        $("#form-container").html($("#" + formId).html());*/
-
         $('#logo').change(function(e) {
             let reader = new FileReader();
             reader.onload = function(e) {
@@ -58,6 +52,11 @@ $(document).ready(function() {
                 $("#previewlogo").attr('src', "/storage/" + response.settings[11].value).show();
                 $("#previewfavicon").attr('src', "/storage/" + response.settings[12].value).show();
                 loadCountries(response.country, response.settings[3].value);
+                console.log(response.country);
+                console.log(response.settings[2].value);
+                console.log(response.state);
+                loadstate(response.state, response.settings[2].value);
+                loadcity(response.city, response.settings[1].value);
 
             });
         }
@@ -70,6 +69,28 @@ $(document).ready(function() {
             $.each(country, function(index, country) {
                 let selected = selectedCountry == country.id ? 'selected' : '';
                 countryDropdown.append(`<option value="${country.id}" ${selected}>${country.name}</option>`);
+            });
+        }
+
+        function loadstate(state, selectedstate) {
+            let stateDropdown = $('#state');
+            stateDropdown.empty();
+            stateDropdown.append('<option value="">Select State</option>');
+
+            $.each(state, function(index, state) {
+                let selected = selectedstate == state.id ? 'selected' : '';
+                stateDropdown.append(`<option value="${state.id}" ${selected}>${state.name}</option>`);
+            });
+        }
+
+        function loadcity(city, selectedcity) {
+            let cityDropdown = $('#city');
+            cityDropdown.empty();
+            cityDropdown.append('<option value="">Select City</option>');
+
+            $.each(city, function(index, city) {
+                let selected = selectedcity == city.id ? 'selected' : '';
+                cityDropdown.append(`<option value="${city.id}" ${selected}>${city.name}</option>`);
             });
         }
 
@@ -119,6 +140,39 @@ $(document).ready(function() {
                     } else {
                         alert("An unexpected error occurred: " + xhr.responseText);
                     }
+                }
+            });
+        });
+
+        $('#country').change(function() {
+            let country_id = $(this).val();
+            console.log(country_id);
+            $('#state').html('<option value="">Select State</option>'); // Reset state dropdown
+            $('#city').html('<option value="">Select City</option>');
+            $.ajax({
+                url: '/admin/settings/getstate/' + country_id,
+                type: 'GET',
+                success: function(states) {
+                    console.log(states);
+                    $.each(states, function(name, id) {
+                        $('#state').append('<option value="' + id + '">' + name + '</option>');
+                    });
+                }
+            });
+        });
+
+        $('#state').change(function() {
+            let state_id = $(this).val();
+            console.log(state_id);
+            $('#city').html('<option value="">Select City</option>');
+            $.ajax({
+                url: '/admin/settings/getcity/' + state_id,
+                type: 'GET',
+                success: function(city) {
+                    console.log(city);
+                    $.each(city, function(name, id) {
+                        $('#city').append('<option value="' + id + '">' + name + '</option>');
+                    });
                 }
             });
         });

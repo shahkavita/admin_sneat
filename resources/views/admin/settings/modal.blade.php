@@ -24,35 +24,43 @@
         <label class="form-label">Company Name</label>
         <input type="text" class="form-control" placeholder="Enter company name" name="settings[companyname]" id="companyname" 
         value="{{ old('settings.companyname') }}">
-        <span class="text-danger error-companyname"></span>
-         
+        <span class="text-danger error-companyname"></span> 
     </div>
+
     <div class="mb-3">
-        <label class="form-label">City</label>
-        <input type="text" class="form-control" placeholder="Enter city" name="settings[city]" id="city"
-        value="{{ old('settings.city') }}">
-        <span class="text-danger error-city"></span>
-    </div>
+      <label class="form-label">Country</label>
+      <select name="settings[country]" id="country"class="form-control">
+        <option value="">Select Country
+      </option>
+    </select>
+    <span class="text-danger error-country"></span>
+  </div>
+
     <div class="mb-3">
         <label class="form-label">State</label>
-        <input type="text" class="form-control" value="{{ old('settings.state') }}"
-        placeholder="Enter state" name="settings[state]" id="state">
+          <select name="settings[state]" id="state" class="form-control">
+          <option value="">Select State
+          </option>
+        </select>
         <span class="text-danger error-state"></span>
  </div>
+   
     <div class="mb-3">
-        <label class="form-label">Country</label>
-        <select name="settings[country]" id="country"class="form-control">
-          <option value="">Select Country
+      <label class="form-label">City</label>
+      <select name="settings[city]" id="city" class="form-control">
+        <option value="">Select City
         </option>
       </select>
-      <span class="text-danger error-country"></span>
-    </div>
+      <span class="text-danger error-city"></span>
+  </div>
+
     <div class="mb-3">
         <label class="form-label">Zip Code</label>
         <input type="number" class="form-control" value="{{ old('settings.zipcode') }}"
          placeholder="Enter zip code" name="settings[zipcode]" id="zipcode">
         <span class="text-danger error-zipcode"></span>
     </div>
+  
     <div class="mb-3">
         <label class="form-label">Phone Number</label>
         <input type="number" class="form-control" value="{{ old('settings.phonenumber') }}"
@@ -60,6 +68,7 @@
         <span class="text-danger error-phonenumber"></span>
         <p>Use(,) to add multiple phone number</p>
     </div>
+  
     <div class="mb-3">
         <label class="form-label">Email Address</label>
         <input type="email" class="form-control" value="{{ old('settings.email') }}"
@@ -67,6 +76,7 @@
         <span class="text-danger error-email"></span>
         <p>Use(,) to add multiple email address</p>
     </div>
+  
     <div class="w-100 mb-4 pb-3">
     <center><h5>Home Page Counter Setting</h5></center>
    
